@@ -1,0 +1,27 @@
+QIIME2-processing-Oct2
+
+#!/bin/bash
+
+# created directory for project
+mkdir /data/colombia
+cd /data/colombia
+
+# importing and demultiplexing 
+qiime tools import \
+  --type "SampleData[SequencesWithQuality]" \
+  --input-format SingleEndFastqManifestPhred33V2 \
+  --input-path /mnt/datasets/project_2/colombia/colombia_manifest.txt \
+  --output-path ./demux.qza
+
+# converting qza to qzv format
+qiime demux summarize \
+--i-data demux.qza \
+--o-visualization demux.qzv
+
+# local computer terminal - 
+cd Desktop/micb475-project2
+mkdir colombia
+cd colombia
+scp root@10.19.139.116:/data/colombia/demux.qzv .
+#Biome1376
+
