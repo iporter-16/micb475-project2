@@ -1,8 +1,8 @@
 QIIME2-processing
 
-#### Oct 2, 2023 - SKA ####
 #!/bin/bash
 
+#### Oct 2, 2023 - SKA ####
 # created directory 'colombia' for project
 mkdir /data/colombia
 cd /data/colombia
@@ -56,8 +56,10 @@ qiime feature-table tabulate-seqs \
   --i-data rep-seqs.qza \
   --o-visualization rep-seqs.qzv
 
-## local computer
+## local computer, copying files
 cd Desktop/micb475-project2/colombia
 scp root@10.19.139.116:/data/colombia/stats.qzv .
 scp root@10.19.139.116:/data/colombia/table.qzv .
 scp root@10.19.139.116:/data/colombia/rep-seqs.qzv .
+##
+#### Oct 2, 2023 - SKA ####
