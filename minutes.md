@@ -15,4 +15,4 @@ Question: what is the confounding variable that causes the population clustering
 ## Oct 5 (Agenda)
 Our options: look for confounding variables (above), or use piecrust for metabolic analysis (fatty acid metabolism)
 
-Things to decide upon: timeline/process, assigning roles and draft deadlines.
+Things to decide upon: timeline/process, assigning roles and draft deadlines. Using truncation of 225 as this is what the cardiometabolic paper used, and we are investigating their confounding variable(?)
