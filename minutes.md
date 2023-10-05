@@ -54,5 +54,5 @@ Things to decide upon: timeline/process, assigning roles and draft deadlines. Us
 **Action items**
 
 - Chris will send PIECRUST information –> download software, learn how to run
-- Proposal drafting.
+- Decide who is doing what for the proposal.
 
