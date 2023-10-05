@@ -16,3 +16,16 @@ Question: what is the confounding variable that causes the population clustering
 Our options: look for confounding variables (above), or use piecrust for metabolic analysis (fatty acid metabolism)
 
 Things to decide upon: timeline/process, assigning roles and draft deadlines. Using truncation of 225 as this is what the cardiometabolic paper used, and we are investigating their confounding variable(?)
+
+## Oct 5 (Meeting notes)
+*Designing question* – confounding variable is a good first aim, but what is the question itself? Need to have background in proposal as to why you are studying this field, drawing from literature.
+
+- Eg. if city, perform lit review into consumption and environment. How is the microbiome of Columbians undergoing diet westernisation affected by geographical location?
+
+*How to find confounding variable* – if PCA plot shows the separation by those two groups!
+
+*Using piecrust* – introduces dataset with metabolic function, to draw connections between microbiome and pathways. Instead of calling a read based on species, calls based on metabolism. Can perform analysis grouping based on function / pathway.
+
+- Would use the same reads, manifest, sequence etc.
+- Produces feature tables, one for enzymes and one for pathways.
+
