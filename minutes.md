@@ -28,4 +28,19 @@ Things to decide upon: timeline/process, assigning roles and draft deadlines. Us
 
 - Would use the same reads, manifest, sequence etc.
 - Produces feature tables, one for enzymes and one for pathways.
+- Compare the changes in pathways and function with the changes in microbiome highlighted in the student paper on cardiometabolic status.
+
+**Question: How does the microbial composition reflect metabolic function between smokers and non-smokers undergoing diet Westernisation?**
+
+**Aims:**
+
+- Use QIIME processing to generate feature tables and phylogenetic tree –> look at bacterial abundance and compare to piecrust metabolic data. Eg. Get subset of upregulated pathways, the bacteria associated with these pathways, and whether any of those bacteria are upregulated.
+- Investigate the change in short-chain fatty acid metabolism and the link to firmicute population changes.
+- Link above to the gut-brain axis, is there a connection to neurotransmitters?
+- Investigate the impact of geographic location on smoking/nonsmoking metabolic statuses
+
+**Action items**
+
+- Chris will send PIECRUST information –> download software, learn how to run
+- Proposal drafting.
 
