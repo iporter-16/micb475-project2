@@ -18,6 +18,8 @@ Our options: look for confounding variables (above), or use piecrust for metabol
 Things to decide upon: timeline/process, assigning roles and draft deadlines. Using truncation of 225 as this is what the cardiometabolic paper used, and we are investigating their confounding variable(?)
 
 ## Oct 5 (Meeting notes)
+*notetaker: Imogen*
+
 *Designing question* – confounding variable is a good first aim, but what is the question itself? Need to have background in proposal as to why you are studying this field, drawing from literature.
 
 - Eg. if city, perform lit review into consumption and environment. How is the microbiome of Columbians undergoing diet westernisation affected by geographical location?
@@ -30,14 +32,24 @@ Things to decide upon: timeline/process, assigning roles and draft deadlines. Us
 - Produces feature tables, one for enzymes and one for pathways.
 - Compare the changes in pathways and function with the changes in microbiome highlighted in the student paper on cardiometabolic status.
 
-**Question: How does the microbial composition reflect metabolic function between smokers and non-smokers undergoing diet Westernisation?**
+**Question: How does the microbial composition reflect metabolic function between smokers and non-smokers? How significantly does diet affect function?**
 
 **Aims:**
 
+1. Changes in microbiome composition (a/ß diversity) in smokers vs. nonsmokers, and by diet categories (see below).
+2. Changes in metabolic function between smokers and non-smokers, using Piecrust. 
+3. Within the smoking population, how how does **fibre intake** affect metabolic gut function? Split into four groups (nonsmoker high-fibre, nonsmoker low-fibre, smoker high-fibre, smoker low-fibre), generate plot showing which pathways are up/downregulated. *Control is low-fibre group?*
+4. Within the smoking population, how does **cholesterol intake** affect metabolic function? As above.
+
+
+
 - Use QIIME processing to generate feature tables and phylogenetic tree –> look at bacterial abundance and compare to piecrust metabolic data. Eg. Get subset of upregulated pathways, the bacteria associated with these pathways, and whether any of those bacteria are upregulated.
+- Within the smoker category, create dietary pattern categories. Which pattern results in the least dysbiosis? 
 - Investigate the change in short-chain fatty acid metabolism and the link to firmicute population changes.
 - Link above to the gut-brain axis, is there a connection to neurotransmitters?
 - Investigate the impact of geographic location on smoking/nonsmoking metabolic statuses
+
+*Note: piecrust is making huge assumptions as it does not directly correlate bacteria to function*
 
 **Action items**
 
