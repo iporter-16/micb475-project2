@@ -27,11 +27,27 @@ Organised by date, descending.
 |Within the smoking population, how how does fibre intake affect metabolic gut function? Split into four groups (nonsmoker high-fibre, nonsmoker low-fibre, smoker high-fibre, smoker low-fibre), generate plot showing which pathways are up/downregulated. Control is low-fibre group? | Same tables as A2. |
 |Within the smoking population, how does HDL intake affect metabolic function? As above. | Same ^|
 
+### Proposal allocations
+
+- Intro & Background –> Imogen
+- Objectives, Aims & Rationale –> Alice
+- Approach & Timeline –> Sean
+- Overview flowchart –> Tiffany/Sam
+- QIIME processing (cutoff @248) –> Tiffany/Sam
+
 ### Action items
 
-- Submit proposal to Chris by 17th for feedback
-- Have QIIME done by next meeting
+- Submit proposal to Chris by Oct 17th for feedback
+- Look at qza repseqs table dmux files on Oct 17th
+- Metadata filtering asap –> Tiffany
+- QIIME processing –> ?
 
+**Timeline** 
+- Picrust analysis by Oct 22nd
+- Coding finished by early Nov
+- Start manuscript by mid Nov
+
+  
 ## Oct 5 
 
 ### Agenda
