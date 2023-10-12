@@ -10,13 +10,22 @@ Organised by date, descending.
 
 | Agenda item                                                                        	| Outcome 	|
 |------------------------------------------------------------------------------------	|---------	|
-| Confirm project objectives                                                         	|         	|
+| Confirm project objectives                                                         	| See below|
 | Assign proposal roles                                                              	|         	|
-| Discuss categorisation cutoffs for fibre/cholesterol / other variables of interest 	|         	|
+| Discuss categorisation cutoffs for fibre/cholesterol / other variables of interest 	| Fibre cutoffs: above/below 21g(f), 30g(m). LDL cutoffs: <100mg(mf). |
 | Determine ^ associated data manipulation (i.e. categorisation) 	|         	|
 | Assign metadata filtering / wrangling role(s)                                      	|         	|
 
 ### Meeting notes
+
+| Aim | Figure(s) |
+|-----|-----|
+|Changes in microbiome composition (a/ß diversity) in smokers vs. nonsmokers, and by diet categories (see below). | All a-diversity metrics (Shannons, Faith's PD) in boxplots by non/smoke and diet categories|
+| *Sub-aim* : bin data based on fiber and cholesterol levels (H/L) | n/a |
+|Changes in metabolic function between smokers and non-smokers, using picrust. | Pathway tables, enzyme tables. Each analysis runs comparison so smoking vs.nonsmoking. Produce table of top 10 upregulated pathways, and top 10 downregulated. Produce heatmap & volcano plto to visualise.|
+|*Sub-aim* : Install picrust, process data to remove all features in table.qza file that are mitochondria/chloroplasts and also <5 (increase efficiency) through QIIME| n/a|
+|Within the smoking population, how how does fibre intake affect metabolic gut function? Split into four groups (nonsmoker high-fibre, nonsmoker low-fibre, smoker high-fibre, smoker low-fibre), generate plot showing which pathways are up/downregulated. Control is low-fibre group? | Same tables as A2. |
+|Within the smoking population, how does HDL intake affect metabolic function? As above. | Same ^|
 
 ### Action items
 
