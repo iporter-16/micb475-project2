@@ -11,9 +11,12 @@ Organised by date, descending.
 | Confirm project objectives                                                         	|         	|
 | Assign proposal roles                                                              	|         	|
 | Discuss categorisation cutoffs for fibre/cholesterol / other variables of interest 	|         	|
+| Determine ^ associated data manipulation (i.e. categorisation) 	|         	|
 | Assign metadata filtering / wrangling role(s)                                      	|         	|
 
 ### Meeting notes
+
+### Action items
 
 ## Oct 5 
 
@@ -47,6 +50,7 @@ Things to decide upon: timeline/process, assigning roles and draft deadlines. Us
 4. Within the smoking population, how does **cholesterol intake** affect metabolic function? As above.
 
 
+**Workflow suggestion**
 
 - Use QIIME processing to generate feature tables and phylogenetic tree –> look at bacterial abundance and compare to picrust metabolic data. Eg. Get subset of upregulated pathways, the bacteria associated with these pathways, and whether any of those bacteria are upregulated.
 - Within the smoker category, create dietary pattern categories. Which pattern results in the least dysbiosis? 
@@ -56,7 +60,7 @@ Things to decide upon: timeline/process, assigning roles and draft deadlines. Us
 
 *Note: picrust is making huge assumptions as it does not directly correlate bacteria to function*
 
-**Action items**
+### Action items
 
 - Chris will send picrust information –> download software, learn how to run
 - Decide who is doing what for the proposal.
