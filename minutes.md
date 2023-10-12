@@ -4,6 +4,8 @@ Organised by date, descending.
 
 **Proposal** https://docs.google.com/document/d/1oZlL-Ai-Lp_nA-4W0G4WqwVJkbWYVR4hhuk1EpJy-nc/edit
 
+[Oct 5](# Oct 5)
+
 ## Oct 12
 
 ### Agenda
@@ -11,7 +13,7 @@ Organised by date, descending.
 | Agenda item                                                                        	| Outcome 	|
 |------------------------------------------------------------------------------------	|---------	|
 | Confirm project objectives                                                         	| See below|
-| Assign proposal roles                                                              	|         	|
+| Assign proposal roles                                                              	|Done|
 | Discuss categorisation cutoffs for fibre/cholesterol / other variables of interest 	| Fibre cutoffs: above/below 21g(f), 30g(m). LDL cutoffs: <100mg(mf). |
 | Determine ^ associated data manipulation (i.e. categorisation) 	|         	|
 | Assign metadata filtering / wrangling role(s)                                      	|         	|
@@ -38,9 +40,9 @@ Organised by date, descending.
 ### Action items
 
 - Submit proposal to Chris by Oct 17th for feedback
-- Look at qza repseqs table dmux files on Oct 17th
 - Metadata filtering asap –> Tiffany
-- QIIME processing –> ?
+- Look at qza repseqs table dmux files, rarefaction curve on **Oct 17th** –> Sam/Tiffany
+- If possible, a-diversity analysis by **Oct 17t** for smoking/nonsmoking populations.
 
 **Timeline** 
 - Picrust analysis by Oct 22nd
