@@ -4,30 +4,44 @@ Organised by date, descending.
 
 **Proposal** https://docs.google.com/document/d/1oZlL-Ai-Lp_nA-4W0G4WqwVJkbWYVR4hhuk1EpJy-nc/edit
 
-[Oct 5](# Oct 5)
+[Oct 5](#oct-5) ; [Oct 12](#oct-12)
 
 ## Oct 12
 
 ### Agenda
 
-| Agenda item                                                                        	| Outcome 	|
+| Agenda item                                                                        	| Conclusion 	|
 |------------------------------------------------------------------------------------	|---------	|
-| Confirm project objectives                                                         	| See below|
-| Assign proposal roles                                                              	|Done|
+| Confirm project objectives                                                         	|[Done](#project-aims) |
+| Assign proposal roles                                                              	|[Done](#proposal-allocations)|
 | Discuss categorisation cutoffs for fibre/cholesterol / other variables of interest 	| Fibre cutoffs: above/below 21g(f), 30g(m). LDL cutoffs: <100mg(mf). |
 | Determine ^ associated data manipulation (i.e. categorisation) 	|         	|
-| Assign metadata filtering / wrangling role(s)                                      	|         	|
+| Assign metadata filtering / wrangling role(s)                                      	|Tiffany|
 
-### Meeting notes
+### Project Aims
 
-| Aim | Figure(s) |
-|-----|-----|
-|Changes in microbiome composition (a/ß diversity) in smokers vs. nonsmokers, and by diet categories (see below). | All a-diversity metrics (Shannons, Faith's PD) in boxplots by non/smoke and diet categories|
-| *Sub-aim* : bin data based on fiber and cholesterol levels (H/L) | n/a |
-|Changes in metabolic function between smokers and non-smokers, using picrust. | Pathway tables, enzyme tables. Each analysis runs comparison so smoking vs.nonsmoking. Produce table of top 10 upregulated pathways, and top 10 downregulated. Produce heatmap & volcano plto to visualise.|
-|*Sub-aim* : Install picrust, process data to remove all features in table.qza file that are mitochondria/chloroplasts and also <5 (increase efficiency) through QIIME| n/a|
-|Within the smoking population, how how does fibre intake affect metabolic gut function? Split into four groups (nonsmoker high-fibre, nonsmoker low-fibre, smoker high-fibre, smoker low-fibre), generate plot showing which pathways are up/downregulated. Control is low-fibre group? | Same tables as A2. |
-|Within the smoking population, how does HDL intake affect metabolic function? As above. | Same ^|
+1. Identify changes in microbiome composition (a/ß diversity) in smokers vs. nonsmokers, and by diet categories
+
+   1.1. bin data based on fiber and cholesterol levels (H/L)
+
+   *Figure outputs: All a-diversity metrics (Shannons, Faith's PD) in boxplots by non/smoke and diet categories*
+   
+2. Analyse changes in metabolic function between smokers and non-smokers, using picrust.
+
+   2.1. Install picrust, process data to remove all features in table.qza file that are mitochondria/chloroplasts and also <5 (increase efficiency) through QIIME
+
+   *Figure outputs: Pathway tables, enzyme tables. Produce table of top 10 upregulated pathways, and top 10 downregulated. Produce heatmap & volcano  to visualise.*
+
+3. Within the smoking population, how how does fibre intake affect metabolic gut function?
+
+   Split into four groups (nonsmoker high-fibre, nonsmoker low-fibre, smoker high-fibre, smoker low-fibre), generate plot showing which pathways are up/downregulated. Control is low-fibre group.
+
+   *Figure outputs: same as A2*
+
+4. Within the smoking population, how how does LDL intake affect metabolic gut function?
+
+   Same as A3.
+
 
 ### Proposal allocations
 
