@@ -64,4 +64,120 @@ scp root@10.19.139.116:/data/colombia/rep-seqs.qzv .
 ##
 #### Oct 2, 2023 - SKA ####
 
-# For picrust2, we will need to reproduce the rep-seqs.qza and table-qza files with the new categories
+### For picrust2, we will need to reproduce the rep-seqs.qza and table-qza files with the new categories, demux file is fine
+### picrust2 was installed and copied to /data directory by Alice
+### change truncation length to 248 in denoising and clustering step
+
+#### Oct 12, 2023 - SKA ####
+
+# remove all files from /data/colombia working directory except for demux files
+rm rep-seqs.qza
+rm rep-seqs.qzv
+rm stats.qza
+rm stats.qzv
+rm table.qza
+rm table.qzv
+
+### truncation length of 248 was chosen 
+
+# created session 'ses1'
+screen -S ses1
+
+# denoising and clustering in working directory /data/colombia
+# Determine ASVs with DADA2
+qiime dada2 denoise-single \
+  --i-demultiplexed-seqs demux.qza \
+  --p-trim-left 0 \
+  --p-trunc-len 248 \
+  --o-representative-sequences rep-seqs.qza \
+  --o-table table.qza \
+  --o-denoising-stats stats.qza
+
+### Tiffany reproduced metadata file to include 2 new columns to categorize "high" and "low" fiber and "high" and "low" LDL
+
+
+
+
+# Visualize ASVs stats
+qiime feature-table summarize \
+  --i-table table.qza \
+  --o-visualization table.qzv \
+  --m-sample-metadata-file /mnt/datasets/project_2/colombia/colombia_metadata.txt
+
+qiime feature-table tabulate-seqs \
+  --i-data rep-seqs.qza \
+  --o-visualization rep-seqs.qzv
+
+## local computer, copying files
+cd Desktop/micb475-project2/colombia
+scp root@10.19.139.116:/data/colombia/table.qzv .
+scp root@10.19.139.116:/data/colombia/rep-seqs.qzv .
+##
+
+### Taxonomic Analysis ###
+
+# Training Classifier #
+# Extract your amplicon of interest from the reference database
+# "The V4 hypervariable region of the 16S rRNA gene from each sample was amplified using primers F515 (5′-GTGCCAGCMGCCGCGGTAA-3′) and R806 (5′-GGACTACHVGGGTWTCTAAT-3′)"
+qiime feature-classifier extract-reads \
+  --i-sequences /mnt/datasets/silva_ref_files/silva-138-99-seqs.qza \
+  --p-f-primer GTGCCAGCMGCCGCGGTAA \
+  --p-r-primer GGACTACHVGGGTWTCTAAT \
+  --p-trunc-len 248 \
+  --o-reads ref-seqs-trimmed.qza
+
+ # Train classifier with ref-seq file
+qiime feature-classifier fit-classifier-naive-bayes \
+  --i-reference-reads ref-seqs-trimmed.qza \
+  --i-reference-taxonomy /mnt/datasets/silva_ref_files/silva-138-99-tax.qza \
+  --o-classifier classifier.qza
+
+# Use the trained classifier to assign taxonomy to your reads (rep-seqs.qza)
+qiime feature-classifier classify-sklearn \
+  --i-classifier classifier.qza \
+  --i-reads rep-seqs.qza \
+  --o-classification taxonomy.qza
+
+qiime metadata tabulate \
+  --m-input-file taxonomy.qza \
+  --o-visualization taxonomy.qzv
+  
+# Taxonomy barplots
+qiime taxa barplot \
+  --i-table table.qza \
+  --i-taxonomy taxonomy.qza \
+  --m-metadata-file /mnt/datasets/project_1/moving_pictures/sample-metadata.tsv \
+  --o-visualization taxa-bar-plots.qzv
+
+### Data Filtering ###
+
+# Taxonomy-based filtering - removing mitochondria and chloroplast
+qiime taxa filter-table \
+  --i-table table.qza \
+  --i-taxonomy taxonomy.qza \
+  --p-exclude mitochondria,chloroplast \
+  --o-filtered-table table-no-mitochondria-no-chloroplast.qza
+
+# Frequency-based filtering - removing 
+qiime feature-table filter-features \
+--i-table table.qza \
+--p-min-frequency 5 \
+--o-filtered-table feature-frequency-filtered-table.qza
+
+### Diversity Metrics ###
+
+# Generate a tree for phylogenetic diversity analyses
+qiime phylogeny align-to-tree-mafft-fasttree \
+  --i-sequences rep-seqs.qza \
+  --o-alignment aligned-rep-seqs.qza \
+  --o-masked-alignment masked-aligned-rep-seqs.qza \
+  --o-tree unrooted-tree.qza \
+  --o-rooted-tree rooted-tree.qza 
+
+# Alpha-rarefaction  
+qiime diversity alpha-rarefaction \
+    --i-table table.qza \
+    --i-phylogeny rooted-tree.qza \
+    --p-max-depth 4000 \
+    --m-metadata-file /mnt/datasets/project_1/mouse_tutorial/metadata.tsv \
+    --o-visualization alpha-rarefaction.qzv
