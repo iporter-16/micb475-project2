@@ -63,3 +63,5 @@ scp root@10.19.139.116:/data/colombia/table.qzv .
 scp root@10.19.139.116:/data/colombia/rep-seqs.qzv .
 ##
 #### Oct 2, 2023 - SKA ####
+
+# For picrust2, we will need to reproduce the rep-seqs.qza and table-qza files with the new categories
