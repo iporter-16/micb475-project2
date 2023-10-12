@@ -2,6 +2,8 @@
 Organised by date, descending.
 **Shared server:** root@10.19.139.116 ; Biome1376
 
+**Proposal** https://docs.google.com/document/d/1oZlL-Ai-Lp_nA-4W0G4WqwVJkbWYVR4hhuk1EpJy-nc/edit
+
 ## Oct 12
 
 ### Agenda
@@ -17,6 +19,9 @@ Organised by date, descending.
 ### Meeting notes
 
 ### Action items
+
+- Submit proposal to Chris by 17th for feedback
+- Have QIIME done by next meeting
 
 ## Oct 5 
 
