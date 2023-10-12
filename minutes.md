@@ -1,23 +1,24 @@
 # Meeting minutes
-Organised with date, topic, notetaker and action items.
-
+Organised by date, descending.
 **Shared server:** root@10.19.139.116 ; Biome1376
 
 ## Oct 12
 
 ### Agenda
 
-- Confirm project objectives
-- Assign proposal roles
-- Discuss categorisation cutoffs for fibre/cholesterol / other variables of interest
-- Assign metadata filtering / wrangling role(s)
+| Agenda item                                                                        	| Outcome 	|
+|------------------------------------------------------------------------------------	|---------	|
+| Confirm project objectives                                                         	|         	|
+| Assign proposal roles                                                              	|         	|
+| Discuss categorisation cutoffs for fibre/cholesterol / other variables of interest 	|         	|
+| Assign metadata filtering / wrangling role(s)                                      	|         	|
 
 ### Meeting notes
 
 ## Oct 5 
 
 ### Agenda
-Our options: look for confounding variables (above), or use piecrust for metabolic analysis (fatty acid metabolism)
+Our options: look for confounding variables (above), or use picrust for metabolic analysis (fatty acid metabolism)
 
 Things to decide upon: timeline/process, assigning roles and draft deadlines. Using truncation of 225 as this is what the cardiometabolic paper used, and we are investigating their confounding variable(?)
 
@@ -30,7 +31,7 @@ Things to decide upon: timeline/process, assigning roles and draft deadlines. Us
 
 *How to find confounding variable* – if PCA plot shows the separation by those two groups!
 
-*Using piecrust* – introduces dataset with metabolic function, to draw connections between microbiome and pathways. Instead of calling a read based on species, calls based on metabolism. Can perform analysis grouping based on function / pathway.
+*Using picrust* – introduces dataset with metabolic function, to draw connections between microbiome and pathways. Instead of calling a read based on species, calls based on metabolism. Can perform analysis grouping based on function / pathway.
 
 - Would use the same reads, manifest, sequence etc.
 - Produces feature tables, one for enzymes and one for pathways.
@@ -41,23 +42,23 @@ Things to decide upon: timeline/process, assigning roles and draft deadlines. Us
 **Aims:**
 
 1. Changes in microbiome composition (a/ß diversity) in smokers vs. nonsmokers, and by diet categories (see below).
-2. Changes in metabolic function between smokers and non-smokers, using Piecrust. 
+2. Changes in metabolic function between smokers and non-smokers, using picrust. 
 3. Within the smoking population, how how does **fibre intake** affect metabolic gut function? Split into four groups (nonsmoker high-fibre, nonsmoker low-fibre, smoker high-fibre, smoker low-fibre), generate plot showing which pathways are up/downregulated. *Control is low-fibre group?*
 4. Within the smoking population, how does **cholesterol intake** affect metabolic function? As above.
 
 
 
-- Use QIIME processing to generate feature tables and phylogenetic tree –> look at bacterial abundance and compare to piecrust metabolic data. Eg. Get subset of upregulated pathways, the bacteria associated with these pathways, and whether any of those bacteria are upregulated.
+- Use QIIME processing to generate feature tables and phylogenetic tree –> look at bacterial abundance and compare to picrust metabolic data. Eg. Get subset of upregulated pathways, the bacteria associated with these pathways, and whether any of those bacteria are upregulated.
 - Within the smoker category, create dietary pattern categories. Which pattern results in the least dysbiosis? 
 - Investigate the change in short-chain fatty acid metabolism and the link to firmicute population changes.
 - Link above to the gut-brain axis, is there a connection to neurotransmitters?
 - Investigate the impact of geographic location on smoking/nonsmoking metabolic statuses
 
-*Note: piecrust is making huge assumptions as it does not directly correlate bacteria to function*
+*Note: picrust is making huge assumptions as it does not directly correlate bacteria to function*
 
 **Action items**
 
-- Chris will send PIECRUST information –> download software, learn how to run
+- Chris will send picrust information –> download software, learn how to run
 - Decide who is doing what for the proposal.
 
 
