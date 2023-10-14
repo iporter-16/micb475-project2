@@ -99,14 +99,11 @@ qiime feature-table tabulate-seqs \
   --i-data rep-seqs.qza \
   --o-visualization rep-seqs.qzv
 
-
-
 # Visualize ASVs stats
 qiime feature-table summarize \
   --i-table table.qza \
   --o-visualization table.qzv \
-  --m-sample-metadata-file /mnt/datasets/project_2/colombia/colombia_metadata.txt
-
+  --m-sample-metadata-file metadata_categorized.txt
 
 ## local computer, copying files
 cd Desktop/micb475-project2/colombia
@@ -138,17 +135,15 @@ qiime feature-classifier classify-sklearn \
   --i-reads rep-seqs.qza \
   --o-classification taxonomy.qza
 
-
-
 qiime metadata tabulate \
   --m-input-file taxonomy.qza \
   --o-visualization taxonomy.qzv
-  
+
 # Taxonomy barplots
 qiime taxa barplot \
   --i-table table.qza \
   --i-taxonomy taxonomy.qza \
-  --m-metadata-file /mnt/datasets/project_1/moving_pictures/sample-metadata.tsv \
+  --m-metadata-file metadata_categorized.txt \
   --o-visualization taxa-bar-plots.qzv
 
 ### Data Filtering ###
@@ -166,6 +161,11 @@ qiime feature-table filter-features \
 --p-min-frequency 5 \
 --o-filtered-table feature-frequency-filtered-table-no-mitochondria-no-chloroplast.qza
 
+qiime feature-table summarize \
+  --i-table feature-frequency-filtered-table-no-mitochondria-no-chloroplast.qza \
+  --o-visualization feature-frequency-filtered-table-no-mitochondria-no-chloroplast.qzv \
+  --m-sample-metadata-file metadata_categorized.txt
+
 ### Diversity Metrics ###
 
 # Generate a tree for phylogenetic diversity analyses
@@ -176,10 +176,19 @@ qiime phylogeny align-to-tree-mafft-fasttree \
   --o-tree unrooted-tree.qza \
   --o-rooted-tree rooted-tree.qza 
 
+#### Oct 14, 2023 - SKA ####
+
+## local computer, copying files
+cd Desktop/micb475-project2/colombia
+scp root@10.19.139.116:/data/colombia/taxonomy.qzv .
+scp root@10.19.139.116:/data/colombia/taxa-bar-plots.qzv .
+scp root@10.19.139.116:/data/colombia/feature-frequency-filtered-table-no-mitochondria-no-chloroplast.qzv .
+##
+
 # Alpha-rarefaction
 qiime diversity alpha-rarefaction \
     --i-table table.qza \
     --i-phylogeny rooted-tree.qza \
-    --p-max-depth  \
-    --m-metadata-file /mnt/datasets/project_2/colombia/metadata.tsv \
+    --p-max-depth 100000 \
+    --m-metadata-file metadata_categorized.txt \
     --o-visualization alpha-rarefaction.qzv
