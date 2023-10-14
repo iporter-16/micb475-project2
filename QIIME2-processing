@@ -102,6 +102,9 @@ write.table(meta_data_categorized, file = "metadata_categorized.txt", sep = "\t"
 # Save the categorized data as an RData file
 save(meta_data_categorized, file = "meta_data_categorized.RData")
 
+# Transfer the txt file from local computer to qiime server
+scp Desktop/micb475-project2/colombia/metadata_categorized.txt root@10.19.139.116:/data/colombia/
+
 #### Oct 12, 2023 - SKA ####
 
 # remove all files from /data/colombia working directory except for demux files
@@ -219,9 +222,10 @@ scp root@10.19.139.116:/data/colombia/taxa-bar-plots.qzv .
 scp root@10.19.139.116:/data/colombia/feature-frequency-filtered-table-no-mitochondria-no-chloroplast.qzv .
 ##
 
+#### Oct 14, 2023 - TW ####
 # Alpha-rarefaction
 qiime diversity alpha-rarefaction \
-    --i-table table.qza \
+    --i-table feature-frequency-filtered-table-no-mitochondria-no-chloroplast.qza \
     --i-phylogeny rooted-tree.qza \
     --p-max-depth 100000 \
     --m-metadata-file metadata_categorized.txt \
