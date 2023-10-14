@@ -93,8 +93,11 @@ qiime dada2 denoise-single \
   --o-table table.qza \
   --o-denoising-stats stats.qza
 
-### Tiffany reproduced metadata file to include 2 new columns to categorize "high" and "low" fiber and "high" and "low" LDL
+### Tiffany reproduced metadata file to include 2 new columns to categorize "high" and "low" fibre and "high" and "low" LDL
 
+qiime feature-table tabulate-seqs \
+  --i-data rep-seqs.qza \
+  --o-visualization rep-seqs.qzv
 
 
 
@@ -104,9 +107,6 @@ qiime feature-table summarize \
   --o-visualization table.qzv \
   --m-sample-metadata-file /mnt/datasets/project_2/colombia/colombia_metadata.txt
 
-qiime feature-table tabulate-seqs \
-  --i-data rep-seqs.qza \
-  --o-visualization rep-seqs.qzv
 
 ## local computer, copying files
 cd Desktop/micb475-project2/colombia
@@ -138,6 +138,8 @@ qiime feature-classifier classify-sklearn \
   --i-reads rep-seqs.qza \
   --o-classification taxonomy.qza
 
+
+
 qiime metadata tabulate \
   --m-input-file taxonomy.qza \
   --o-visualization taxonomy.qzv
@@ -158,11 +160,11 @@ qiime taxa filter-table \
   --p-exclude mitochondria,chloroplast \
   --o-filtered-table table-no-mitochondria-no-chloroplast.qza
 
-# Frequency-based filtering - removing 
+# Frequency-based filtering - removing freq <5
 qiime feature-table filter-features \
---i-table table.qza \
+--i-table table-no-mitochondria-no-chloroplast.qza \
 --p-min-frequency 5 \
---o-filtered-table feature-frequency-filtered-table.qza
+--o-filtered-table feature-frequency-filtered-table-no-mitochondria-no-chloroplast.qza
 
 ### Diversity Metrics ###
 
@@ -174,10 +176,10 @@ qiime phylogeny align-to-tree-mafft-fasttree \
   --o-tree unrooted-tree.qza \
   --o-rooted-tree rooted-tree.qza 
 
-# Alpha-rarefaction  
+# Alpha-rarefaction
 qiime diversity alpha-rarefaction \
     --i-table table.qza \
     --i-phylogeny rooted-tree.qza \
-    --p-max-depth 4000 \
-    --m-metadata-file /mnt/datasets/project_1/mouse_tutorial/metadata.tsv \
+    --p-max-depth  \
+    --m-metadata-file /mnt/datasets/project_2/colombia/metadata.tsv \
     --o-visualization alpha-rarefaction.qzv
