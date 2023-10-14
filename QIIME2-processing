@@ -68,6 +68,40 @@ scp root@10.19.139.116:/data/colombia/rep-seqs.qzv .
 ### picrust2 was installed and copied to /data directory by Alice
 ### change truncation length to 248 in denoising and clustering step
 
+#### Oct 12, 2023 - TW ####
+
+# Assign metadata filtering / wrangling role(s) for the LDL and fiber category
+library(tidyverse)
+library(lubridate)
+library(dplyr)
+library(data.table)
+
+categorize_data <- function(data) {
+  data <- data %>%
+    mutate(LDL_category = case_when(
+      sex == "female" & LDL <= 100 ~ "low",
+      sex == "female" & LDL > 100 ~ "high",
+      sex == "male" & LDL <= 100 ~ "low",
+      TRUE ~ "high"
+    )) %>%
+    mutate(fibre_category = case_when(
+      sex == "female" & fiber <= 21 ~ "low",
+      sex == "female" & fiber > 21 ~ "high",
+      sex == "male" & fiber <= 30 ~ "low",
+      TRUE ~ "high"
+    ))
+  return(data)
+}
+
+# Apply the categorization function
+meta_data_categorized <- categorize_data(colombia)
+
+# Save the categorized data to a text file
+write.table(meta_data_categorized, file = "metadata_categorized.txt", sep = "\t", quote = FALSE, row.names = FALSE)
+
+# Save the categorized data as an RData file
+save(meta_data_categorized, file = "meta_data_categorized.RData")
+
 #### Oct 12, 2023 - SKA ####
 
 # remove all files from /data/colombia working directory except for demux files
