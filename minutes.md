@@ -21,9 +21,15 @@ Organised by date, descending.
 | Draft proposal feedback                                                         	|x |
 | Assign data analysis roles based on approach table, below                                                         	|x |
 
-![Screenshot 2023-10-19 at 8 17 10 AM](https://github.com/iporter-16/micb475-project2/assets/63209879/51065b8a-aa8f-4271-bdca-2602212b10ba)
-![Screenshot 2023-10-19 at 8 18 24 AM](https://github.com/iporter-16/micb475-project2/assets/63209879/5bc4b3ae-db87-40ce-999b-31ca4d53a3ac)
+### Action items
 
+- Fix Chris's suggestions in proposal, email to Chris by Friday noon (ALL)
+- Run picrust on dataset (Imogen)
+- Set up R project on github (Imogen)
+- First milestone: make phyloseq object (Alice)
+- Rarefy data after phyloseq (Sean) -> phyloseq_object_final
+- Alpha diversity analyses after phyloseq_final (Tiffany)
+- Beta diversity analyses after phyloseq_final (Sam)
 
 ## Oct 12
 
