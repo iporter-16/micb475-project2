@@ -6,6 +6,12 @@ Organised by date, descending.
 
 [Oct 2](#oct-2) ; [Oct 5](#oct-5) ; [Oct 12](#oct-12) ; [Oct 19](#oct-19)
 
+## Oct 26
+
+| Agenda item                                                                        	| Conclusion 	|
+|------------------------------------------------------------------------------------	|---------	|
+| Picrust tutorial                                                         	|x |
+
 ## Oct 19
 
 ### Agenda
