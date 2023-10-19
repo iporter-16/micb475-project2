@@ -4,7 +4,7 @@ Organised by date, descending.
 
 **Proposal** https://docs.google.com/document/d/1oZlL-Ai-Lp_nA-4W0G4WqwVJkbWYVR4hhuk1EpJy-nc/edit
 
-[Oct 2](#oct-2) ; [Oct 5](#oct-5) ; [Oct 12](#oct-12)
+[Oct 2](#oct-2) ; [Oct 5](#oct-5) ; [Oct 12](#oct-12) ; [Oct 19](#oct-19)
 
 ## Oct 19
 
@@ -16,6 +16,7 @@ Organised by date, descending.
 | Assign data analysis roles based on approach table, below                                                         	|x |
 
 ![Screenshot 2023-10-19 at 8 17 10 AM](https://github.com/iporter-16/micb475-project2/assets/63209879/51065b8a-aa8f-4271-bdca-2602212b10ba)
+![Screenshot 2023-10-19 at 8 18 24 AM](https://github.com/iporter-16/micb475-project2/assets/63209879/5bc4b3ae-db87-40ce-999b-31ca4d53a3ac)
 
 
 ## Oct 12
