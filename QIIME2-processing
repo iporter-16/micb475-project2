@@ -259,3 +259,32 @@ qiime diversity alpha-group-significance \
 cd Desktop/micb475-project2/colombia
 scp root@10.19.139.116:/data/colombia/core-metrics-results/faith-pd-group-significance.qzv .
 scp root@10.19.139.116:/data/colombia/core-metrics-results/evenness-group-significance.qzv .
+
+
+#### Oct 19, 2023 - IP ####
+
+### picrust2 ###
+conda env create -f picrust2-env.yaml #create the conda environment with some modifications from the picrust2-env.yaml file. This can take up to 30mins.
+conda activate picrust2   #Activate the environment
+pip install --editable .  #Install PICRUSt2
+
+pytest    #Run a test with sample data to make sure it is working!
+      #If your test passes with 59/60 tests successful, we will ingore the failed test and move forward.
+
+#To Run, we need these files:
+
+                  
+                  #seqs.fna  (The rep-seqs.qza file)
+                  #table.biom  (the table.qza*)
+
+
+* - filter the table.qza to remove all the features with 5 or lower counts. This will make the PICRUSt2 analysis much faster.
+              qiime feature-table filter-features \
+                --i-table table.qza \
+                --p-min-frequency 5 \
+                --o-filtered-table feature-frequency-filtered-table.qza
+                   
+#Running PICRUSt2 Analysis!
+#First, make sure you are in the picrust2-2.5.2/ folder.
+
+picrust2_pipeline.py -s path/to/study_seqs.fna -i path/to/study_seqs.biom -o picrust2_out_pipeline -p 1   #This will 30-60 mins depending on your dataset.
