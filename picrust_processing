@@ -1,0 +1,5 @@
+#!/bin/envr/picrust2
+
+conda activate picrust2
+picrust2_pipeline.py -s ../data/columbia/rep-seqs.qzv 
+path/to/study_seqs.fna -i path/to/study_seqs.biom -o picrust2_out_pipeline \-p 1 	
