@@ -1,5 +1,15 @@
 #!/bin/envr/picrust2
 
 conda activate picrust2
-picrust2_pipeline.py -s ../data/columbia/rep-seqs.qzv 
+qiime tools export --input-path rep-seqs.qza --output-path imo-rep-seqs 
+qiime tools export --input-path feature-frequency-filtered-table-no-mitochondria-no-chloroplast.qza --output-path imo-rep-seqs 
+#export the rep-seqs.qza to an fna file in the export directory
+
+qiime feature-table filter-features \
+							  --i-table table.qza \
+							  --p-min-frequency 5 \
+							  --o-filtered-table feature-frequency-filtered-table.qza
+
+picrust2_pipeline.py -s ~/data/colombia/exported-files/dna-sequences.fasta -i ~/data/colombia/exported-files/feature-table.biom -o picrust2_out_pipeline \-p 1
+
 path/to/study_seqs.fna -i path/to/study_seqs.biom -o picrust2_out_pipeline \-p 1 	
