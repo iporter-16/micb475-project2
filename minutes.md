@@ -6,6 +6,18 @@ Organised by date, descending.
 
 [Oct 2](#oct-2) ; [Oct 5](#oct-5) ; [Oct 12](#oct-12)
 
+## Oct 19
+
+### Agenda
+
+| Agenda item                                                                        	| Conclusion 	|
+|------------------------------------------------------------------------------------	|---------	|
+| Draft proposal feedback                                                         	|x |
+| Assign data analysis roles based on approach table, below                                                         	|x |
+
+![Screenshot 2023-10-19 at 8 17 10 AM](https://github.com/iporter-16/micb475-project2/assets/63209879/51065b8a-aa8f-4271-bdca-2602212b10ba)
+
+
 ## Oct 12
 
 ### Agenda
