@@ -132,9 +132,10 @@ qiime dada2 denoise-single \
 
 ### Tiffany reproduced metadata file to include 2 new columns to categorize "high" and "low" fibre and "high" and "low" LDL
 
-qiime feature-table tabulate-seqs \
-  --i-data rep-seqs.qza \
-  --o-visualization rep-seqs.qzv
+# Visualize DADA2 stats
+qiime metadata tabulate \
+  --m-input-file stats.qza \
+  --o-visualization stats.qzv
 
 # Visualize ASVs stats
 qiime feature-table summarize \
@@ -142,8 +143,13 @@ qiime feature-table summarize \
   --o-visualization table.qzv \
   --m-sample-metadata-file metadata_categorized.txt
 
+qiime feature-table tabulate-seqs \
+  --i-data rep-seqs.qza \
+  --o-visualization rep-seqs.qzv
+
 ## local computer, copying files
 cd Desktop/micb475-project2/colombia
+scp root@10.19.139.116:/data/colombia/stats.qzv .
 scp root@10.19.139.116:/data/colombia/table.qzv .
 scp root@10.19.139.116:/data/colombia/rep-seqs.qzv .
 ##
