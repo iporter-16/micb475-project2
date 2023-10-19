@@ -27,7 +27,7 @@ Organised by date, descending.
 - Run picrust on dataset (Imogen)
 - Set up R project on github (Imogen)
 - First milestone: make phyloseq object (Alice)
-- Rarefy data after phyloseq (Sean) -> phyloseq_object_final
+- Rarefy data after phyloseq (Sean) using 22700 -> phyloseq_object_final
 - Alpha diversity analyses after phyloseq_final (Tiffany)
 - Beta diversity analyses after phyloseq_final (Sam)
 
