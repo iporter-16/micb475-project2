@@ -316,3 +316,6 @@ biom convert -i feature-table.biom --to-tsv -o feature-table.txt
 
 #Copy 'colombia_export' directory to computer
 scp -r root@10.19.139.116:~/data/colombia/colombia_export .
+
+#Export updated metadata 
+scp root@10.19.139.116:/data/colombia/metadata_categorized_CL.txt .
