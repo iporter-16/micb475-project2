@@ -38,6 +38,7 @@ pytest		#Run a test with sample data to make sure it is working!
 
 picrust2_pipeline.py -s path/to/study_seqs.fna -i path/to/study_seqs.biom -o picrust2_out_pipeline -p 1 	#This will 30-60 mins depending on your dataset.
 
+qiime tools export --input-path rep-seqs.qza --output-path imo-rep-seqs
 
 #For details on what this single line of code is doing, see https://github.com/picrust/picrust2/wiki/PICRUSt2-Tutorial-(v2.5.2)#minimum-requirements-to-run-full-tutorial
 
