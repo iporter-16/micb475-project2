@@ -54,3 +54,34 @@ otu_table(colombia)
 sample_data(colombia)
 tax_table(colombia)
 phy_tree(colombia)
+
+#### Oct 22, 2023 - SD ####
+
+### Filter out non-bacterial sequences ###
+colombia_filt <- subset_taxa(colombia, Domain == "d__Bacteria" & Class!="c__Chloroplast" & Family !="f__Mitochondria")
+
+### Filter low-abundance taxa (<5 counts) ###
+colombia_filt_nolow <- filter_taxa(colombia_filt, function(x) sum(x)>5, prune = TRUE)
+
+### Pruning samples with less than 100 reads ###
+colombia_filt_nolow_samps <- prune_samples(sample_sums(colombia_filt_nolow)>100, colombia_filt_nolow)
+
+## Rarefy ##
+
+### Taking a look at rarefaction curve (takes a while, can skip) ###
+rarecurve(t(as.data.frame(otu_table(colombia_filt_nolow_samps))), cex=0.1)
+
+### Rarefy ###
+phyloseq_object_final <- rarefy_even_depth(colombia_filt_nolow_samps, rngseed = 1, sample.size = 22700)
+
+### Save ###
+save(colombia_filt_nolow_samps, file="colombia_filt_nolow_samps.RData")
+save(phyloseq_object_final, file="phyloseq_object_final.RData")
+
+
+
+
+
+
+
+

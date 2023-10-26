@@ -9,8 +9,13 @@ Organised by date, descending.
 ## Oct 26
 
 | Agenda item                                                                        	| Conclusion 	|
-|------------------------------------------------------------------------------------	|---------	|
-| Picrust tutorial                                                         	|x |
+|-----------------------------------------	|---------	|
+| Picrust tutorial                        |See file  |
+| Looking over alpha metrics – LDL (Tiffany)    |LDL appears to have no effect on a-diversity so has no big impact on compositional changes, but don't disregard LDL as there may still be smaller-level functional changes occuring (DESeq2 will tell us if specific species are up/downregulated)|
+| Looking over alpha metrics – fiber (Tiffany) | Seems that without smoking fiber intake doesn't affect alpha diversity, but with smoking there is an impact: smoking + high fiber appears to correspond to lower alpha diversity (specifically no difference in evenness, but change in richness)* | 
+
+*For the paper, use Observed, Chao1, Shannon.
+
 
 ## Oct 19
 
