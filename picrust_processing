@@ -5,11 +5,37 @@ qiime tools export --input-path rep-seqs.qza --output-path imo-rep-seqs
 qiime tools export --input-path feature-frequency-filtered-table-no-mitochondria-no-chloroplast.qza --output-path imo-rep-seqs 
 #export the rep-seqs.qza to an fna file in the export directory
 
-qiime feature-table filter-features \
-							  --i-table table.qza \
-							  --p-min-frequency 5 \
-							  --o-filtered-table feature-frequency-filtered-table.qza
-
+#RUN PICRUST PIPELINE
 picrust2_pipeline.py -s ~/data/colombia/exported-files/dna-sequences.fasta -i ~/data/colombia/exported-files/feature-table.biom -o picrust2_out_pipeline \-p 1
 
-path/to/study_seqs.fna -i path/to/study_seqs.biom -o picrust2_out_pipeline \-p 1 	
+### Output:
+
+(picrust2) root@c3b4125ffc20:~/data/picrust2-2.5.2# picrust2_pipeline.py -s ~/data/colombia/exported-files/dna-sequences.fasta -i ~/data/colombia/exported-files/feature-table.biom -o picrust2_out_pipeline \-p 1
+/opt/conda/envs/picrust2/bin/picrust2_pipeline.py:4: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+  __import__('pkg_resources').require('PICRUSt2==2.5.2')
+/opt/conda/envs/picrust2/bin/place_seqs.py:4: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+  __import__('pkg_resources').require('PICRUSt2==2.5.2')
+Warning - 91 input sequences aligned poorly to reference sequences (--min_align option specified a minimum proportion of 0.8 aligning to reference sequences). These input sequences will not be placed and will be excluded from downstream steps.
+
+This is the set of poorly aligned input sequences to be excluded: 5ed9e5850330b9530f05c95bc4c7bfa0, a19f0320a15150080fc33eda76d00632, 8007c46a628acbc480181e4bb6289ab7, 6b6fcf24f1d41cf02c63049f5287f99b, bdb1753720246cfe0c7f39abb2fc817c, 0d7a239421a832a375e5aeb8f875d537, 456113c87fbadbbd261d928716fdf058, 2fcf1550db5c20f08387398341765928, d10c4a9aec02fa814a77c8ce983cc297, 0690b9f20ea6bf1e2aef36ada85e9adf, aa97177defb986cbcfbc02e4eb428183, 35f39858cc69ba7a7fbb08206dc113c0, 135b44ba5fac775ffe83143cf1d35653, 7f2b56e1c890e62d2fea1e3dea5c7040, e424e340151c7cc7cf2e3851f41054df, 91e6f1a4266ce096cfdcd8749b077c48, ea89d62f49d990883ab03fdd992d647e, 1248a78b896741bb8d409fb151702767, 34faa5ad9ee05695d120002e6aba77d9, 6ddcfb2f4bb614374f8504bd872c3793, 26a5525bb94571b09fbb49368138ba2d, 3a7ddca4a6f495a4d23fd84b2cc4ab21, 241a259db9d7f49820a2f463f438b7ff, e94e0a5f743d816bafb38bbecbef68f9, b7bf5c90fadca0263e85b1a206268812, 93323d3ec512a882723c88002ca60a82, b617cecbec1b4a2183835e389518dca5, 0e381752dce13de1ff7e8cbd6b4ba9c6, c223829eb3c307d75a33d146210d41b9, 61b3a28a2128c18b2d77e196060e2f9e, 6b72143cddda69ae7f80659d3df7b74a, e052d6987a7f16f783fda0a9fdc23e45, e321edf3e2d6af4609e80cb36e5489c8, 25c08c7b2bccf2720714b0ed0ee6d470, 2cada96147aed97b56f4f30cbef0ef5a, 5984b20ecf481d6cb200a5c6b2c83cd8, 2a5d9f3a0938e705c1c5fa5c0a2aba1c, 1ab85c654566785fd11bdf5680649560, 8849d61de540350187ba6178dae40701, c170f538ce53cc33bc29c2bf983acf4e, 104c4c6b6e650bfbb4af63a62465eb94, c57fd0410057e52689579edd561938ad, 269bed317ff10618a5321657c1b1203d, e5d5f9f2475bdf1a8aea6e9ae7f64fa6, b28ccaa6938a7dd92098a1a9eca8a8e2, 5b54d01a818523035e89e4d35bb7e612, b52f1ef3cba9782d79516ae5644a6de5, 50536138fe8ee54d7fc76934eb15f64b, 6beff1dd192f92f8fffa82e52aca46c0, 381890560c0ed94c357d7a7d9774cdee, 01f8cc08f2444ba5da4ef1788bbc1d4a, 6a83b108a4678d2b9f8c89738f034661, f1b8cc3997d3562647db73640e947216, 5caebdb214aac7a44a2d9c1e84de0ff1, 14a7fa52ece7f5bfcb3981f01e546df3, 7782db2df75f44f47260a1c712454cfd, b1a931731fbd0bf3e7dd1611b72fba0c, bd5fb2a18a7b924d1e1f40fdb56eb131, e52a07ee11c90bbf16181a05ed043638, a96a2395589f64291bad8d19b405d732, 6a36f54ed3aa33eac671ddaeaaf56387, 858c42850feddcf846634ea73b170c8a, 93247a3c5074770df5a86f86bc03ad5e, cd553a59a08b464de97e026f3968ea28, 70005206f70840762d9676dfc70f344f, 4b68d36ba452c18541d8ff311d687b0d, 83af26c44aedccc114249af0ac0e26a6, 1ec309f6b9c8b66a16486f1fb5926cf6, 47f9b4908c4b4e8a8a5dcf08024a9012, a2209b5d09bf716d4d2597b50b9563df, a32bb2806e447aaa9cb01003a95d1c04, 8af5285077dda8774ed9993ef5b83039, f054cc8eab79699c9bb78a05f82b7a51, 1307a097d7a25e0dd5a9b4e8ebe42ab3, aaa848e22255446f82243f9d76c9f9d9, 063d113b22d6691a2987562ee1d26782, 32aac7afffda93b2ab0d545009c5e672, 31125000e2ba125e7e1f2f57379df34e, bb06e2b23e8d8cac3ade88efd0f96a76, 6c453c5c4fccad068cfd78d6c8956f33, 5f3e2e0062205167a8de05c8100005fd, 3d9af8db1845a42a0f6fd92c44ca9054, 668d04bec3a72f2825feb3ad56dbdfa7, 65811c0da15e5193f0ab365a2a029787, 695fe157049f5a0d2f07f7f465ba4c16, 7409ab19ee9f3ceaca59e9379a35a05e, 191ba8d5d2abb977330fc8ced58539b0, ad3c1abc9feb52ac1111c66d70285631, dab699dc230f185139830bbf0966453d, 1a6cc1a3de5bccd93ff7b10e2d01c666, e1c65cf9c021f6d7910d99d1e5af8a70
+
+
+/opt/conda/envs/picrust2/bin/hsp.py:4: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+  __import__('pkg_resources').require('PICRUSt2==2.5.2')
+
+/opt/conda/envs/picrust2/bin/hsp.py:4: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+  __import__('pkg_resources').require('PICRUSt2==2.5.2')
+
+/opt/conda/envs/picrust2/bin/hsp.py:4: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+  __import__('pkg_resources').require('PICRUSt2==2.5.2')
+
+/opt/conda/envs/picrust2/bin/metagenome_pipeline.py:4: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+  __import__('pkg_resources').require('PICRUSt2==2.5.2')
+64 of 11281 ASVs were above the max NSTI cut-off of 2.0 and were removed from the downstream analyses.
+
+/opt/conda/envs/picrust2/bin/metagenome_pipeline.py:4: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+  __import__('pkg_resources').require('PICRUSt2==2.5.2')
+64 of 11281 ASVs were above the max NSTI cut-off of 2.0 and were removed from the downstream analyses.
+
+/opt/conda/envs/picrust2/bin/pathway_pipeline.py:4: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+  __import__('pkg_resources').require('PICRUSt2==2.5.2')

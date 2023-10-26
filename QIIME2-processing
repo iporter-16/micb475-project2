@@ -132,9 +132,10 @@ qiime dada2 denoise-single \
 
 ### Tiffany reproduced metadata file to include 2 new columns to categorize "high" and "low" fibre and "high" and "low" LDL
 
-qiime feature-table tabulate-seqs \
-  --i-data rep-seqs.qza \
-  --o-visualization rep-seqs.qzv
+# Visualize DADA2 stats
+qiime metadata tabulate \
+  --m-input-file stats.qza \
+  --o-visualization stats.qzv
 
 # Visualize ASVs stats
 qiime feature-table summarize \
@@ -142,8 +143,13 @@ qiime feature-table summarize \
   --o-visualization table.qzv \
   --m-sample-metadata-file metadata_categorized.txt
 
+qiime feature-table tabulate-seqs \
+  --i-data rep-seqs.qza \
+  --o-visualization rep-seqs.qzv
+
 ## local computer, copying files
 cd Desktop/micb475-project2/colombia
+scp root@10.19.139.116:/data/colombia/stats.qzv .
 scp root@10.19.139.116:/data/colombia/table.qzv .
 scp root@10.19.139.116:/data/colombia/rep-seqs.qzv .
 ##
@@ -288,3 +294,28 @@ pytest    #Run a test with sample data to make sure it is working!
 #First, make sure you are in the picrust2-2.5.2/ folder.
 
 picrust2_pipeline.py -s path/to/study_seqs.fna -i path/to/study_seqs.biom -o picrust2_out_pipeline -p 1   #This will 30-60 mins depending on your dataset.
+
+#### Oct 19, 2023 - AW ####
+#Exporting .qza files for R 
+
+root@c3b4125ffc20:~/data/colombia# mkdir colombia_export
+qiime tools export \
+--input-path ~/data/colombia/table.qza \
+--output-path table_export
+
+qiime tools export \
+--input-path ~/data/colombia/rooted-tree.qza \
+--output-path rooted_tree_export
+
+qiime tools export \
+--input-path ~/data/colombia/taxonomy.qza \
+--output-path taxonomy_export
+
+#Convert biom file to txt file 
+biom convert -i feature-table.biom --to-tsv -o feature-table.txt
+
+#Copy 'colombia_export' directory to computer
+scp -r root@10.19.139.116:~/data/colombia/colombia_export .
+
+#Export updated metadata 
+scp root@10.19.139.116:/data/colombia/metadata_categorized_CL.txt .
