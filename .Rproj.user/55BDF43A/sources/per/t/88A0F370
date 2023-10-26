@@ -1,0 +1,26 @@
+{
+    "id": "88A0F370",
+    "path": "C:/Users/saman/Desktop/micb475-project2/Generate phyloseq_object.R",
+    "project_path": "Generate phyloseq_object.R",
+    "type": "r_source",
+    "hash": "457926846",
+    "contents": "",
+    "dirty": false,
+    "created": 1698338972432.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "65,34",
+        "scrollLine": "64"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1698339188,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1698339188597,
+    "read_only": false,
+    "read_only_alternatives": []
+}
