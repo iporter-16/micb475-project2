@@ -1,4 +1,4 @@
-#### Oct 24, 2023 - SKA ####
+#### Oct 26, 2023 - SKA ####
 #!/usr/bin/env Rscript
 
 ### Beta Diversity ###
@@ -16,29 +16,54 @@ samp_dat_wdiv <- data.frame(sample_data(phyloseq_object_final), estimate_richnes
 # Use phyloseq to calculate distance matrix
 dm_weighted_unifrac <- UniFrac(phyloseq_object_final, weighted=TRUE)#weighted unifrac
 dm_unweighted_unifrac <- UniFrac(phyloseq_object_final, weighted=FALSE)#unweighted unifrac
-dm_bray <- vegdist(t(otu_table(phyloseq_object_final)), method="bray")#bray
+dm_bray <- vegdist(t(otu_table(phyloseq_object_final)), method="bray")#bray-curtis
 dm_jaccard <- vegdist(t(otu_table(phyloseq_object_final)), method="jaccard")#jaccard
 # permanova: smoker-fibre_category
 adonis2(dm_weighted_unifrac ~ `smoker`*fibre_category, data=samp_dat_wdiv)#weighted unifrac
 adonis2(dm_unweighted_unifrac ~ `smoker`*fibre_category, data=samp_dat_wdiv)#unweighted unifrac
-adonis2(dm_bray ~ `smoker`*fibre_category, data=samp_dat_wdiv)#bray
+adonis2(dm_bray ~ `smoker`*fibre_category, data=samp_dat_wdiv)#bray-curtis
 adonis2(dm_jaccard ~ `smoker`*fibre_category, data=samp_dat_wdiv)#jaccard
 # permanova: smoker-LDL_category
 adonis2(dm_weighted_unifrac ~ `smoker`*LDL_category, data=samp_dat_wdiv)#weighted unifrac
 adonis2(dm_unweighted_unifrac ~ `smoker`*LDL_category, data=samp_dat_wdiv)#unweighted unifrac
-adonis2(dm_bray ~ `smoker`*LDL_category, data=samp_dat_wdiv)#bray
+adonis2(dm_bray ~ `smoker`*LDL_category, data=samp_dat_wdiv)#bray-curtis
 adonis2(dm_jaccard ~ `smoker`*LDL_category, data=samp_dat_wdiv)#jaccard
 
-# PCoA plot: smoker-fibre_category
+### PCoA plot ###
+# weighted unifrac
 ord.weighted_unifrac <- ordinate(phyloseq_object_final, method="PCoA", distance="unifrac", weighted=TRUE)
-plot_ordination(phyloseq_object_final, ord.weighted_unifrac, color = "smoker", shape = "fibre_category") +
-  stat_ellipse(type = "norm")
-
+gg_pcoa_wunifrac_fibre <- plot_ordination(phyloseq_object_final, ord.weighted_unifrac, color = "smoker", shape = "fibre_category") +
+  stat_ellipse(type = "norm")#smoker-fibre
+gg_pcoa_wunifrac_LDL <- plot_ordination(phyloseq_object_final, ord.weighted_unifrac, color = "smoker", shape = "LDL_category") +
+  stat_ellipse(type = "norm")#smoker-LDL
+# unweighted unifrac
 ord.unweighted_unifrac <- ordinate(phyloseq_object_final, method="PCoA", distance="unifrac", weighted=FALSE)
-plot_ordination(phyloseq_object_final, ord.unweighted_unifrac, color = "smoker", shape = "fibre_category") +
-  stat_ellipse(type = "norm")
+gg_pcoa_unwunifrac_fibre <- plot_ordination(phyloseq_object_final, ord.unweighted_unifrac, color = "smoker", shape = "fibre_category") +
+  stat_ellipse(type = "norm")#smoker-fibre
+gg_pcoa_unwunifrac_LDL <- plot_ordination(phyloseq_object_final, ord.unweighted_unifrac, color = "smoker", shape = "LDL_category") +
+  stat_ellipse(type = "norm")#smoker-LDL
+# bray-curtis
+ord.bray <- ordinate(phyloseq_object_final, method="PCoA", distance="bray")
+gg_pcoa_bray_fibre <- plot_ordination(phyloseq_object_final, ord.bray, color = "smoker", shape = "fibre_category") +
+  stat_ellipse(type = "norm")#smoker-fibre
+gg_pcoa_bray_LDL <- plot_ordination(phyloseq_object_final, ord.bray, color = "smoker", shape = "LDL_category") +
+  stat_ellipse(type = "norm")#smoker-LDL
 
+### Save plots ###
+ggsave("plot_pcoa_wunifrac_fibre.png"
+       , gg_pcoa_wunifrac_fibre
+       , height=4, width=5)
+ggsave("plot_pcoa_wunifrac_LDL.png"
+       , gg_pcoa_wunifrac_LDL
+       , height=4, width=5)
+ggsave("plot_pcoa_unwunifrac_fibre.png"
+       , gg_pcoa_wunifrac_fibre
+       , height=4, width=5)
+ggsave("plot_pcoa_unwunifrac_LDL.png"
+       , gg_pcoa_wunifrac_LDL
+       , height=4, width=5)
 
+#### Oct 24, 2023 - SKA ####
 # PCoA Plot
 # bray-curtis
 bc_dm <- distance(phyloseq_object_final, method="bray")
