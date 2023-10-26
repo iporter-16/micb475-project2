@@ -17,6 +17,16 @@ Organised by date, descending.
 
 *For the paper, use Observed, Chao1, Shannon.
 
+### Action items
+
+Picrust analyses:
+
+- Sam –> Pure smoking
+- Imogen –> Fiber, nonsmoking
+- Sean –> Fiber, smoking
+- Alice –> LDL, nonsmoking
+- Tiffany –> LDL, smoking
+
 
 ## Oct 19
 
