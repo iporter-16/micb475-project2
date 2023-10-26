@@ -62,6 +62,12 @@ ggsave("plot_pcoa_unwunifrac_fibre.png"
 ggsave("plot_pcoa_unwunifrac_LDL.png"
        , gg_pcoa_wunifrac_LDL
        , height=4, width=5)
+ggsave("plot_pcoa_bray_fibre.png"
+       , gg_pcoa_bray_fibre
+       , height=4, width=5)
+ggsave("plot_pcoa_bray_LDL.png"
+       , gg_pcoa_bray_LDL
+       , height=4, width=5)
 
 #### Oct 24, 2023 - SKA ####
 # PCoA Plot
