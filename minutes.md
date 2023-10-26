@@ -19,7 +19,7 @@ Organised by date, descending.
 
 ### Action items
 
-Picrust analyses:
+Picrust analyses: run using pathways table found in **picrust2-2.5.2/picrust2_out_pipeline/pathways_out/**
 
 - Sam –> Pure smoking
 - Imogen –> Fiber, nonsmoking
