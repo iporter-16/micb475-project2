@@ -62,10 +62,10 @@ ggsave("plot_pcoa_wunifrac_LDL.png"
        , gg_pcoa_wunifrac_LDL
        , height=4, width=5)
 ggsave("plot_pcoa_unwunifrac_fibre.png"
-       , gg_pcoa_wunifrac_fibre
+       , gg_pcoa_unwunifrac_fibre
        , height=4, width=5)
 ggsave("plot_pcoa_unwunifrac_LDL.png"
-       , gg_pcoa_wunifrac_LDL
+       , gg_pcoa_unwunifrac_LDL
        , height=4, width=5)
 ggsave("plot_pcoa_bray_fibre.png"
        , gg_pcoa_bray_fibre
