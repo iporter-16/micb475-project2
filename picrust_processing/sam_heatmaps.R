@@ -31,8 +31,6 @@ daa_results_df <- pathway_daa(abundance = abundance_data,
 # Please change column_to_rownames() to the feature column if you are not using example dataset
 # Please change group to "your_group_column" if you are not using example dataset
 feature_with_p_0.05 <- daa_results_df %>% filter(p_values < 0.05)
-###################################################
-# not getting features with p<0.05
 pathway_heatmap(abundance = abundance_data %>% filter(pathway %in% feature_with_p_0.05$feature) %>% column_to_rownames("pathway"), metadata = metadata, group = "smoker")
 
 # Generate pathway PCA plot
