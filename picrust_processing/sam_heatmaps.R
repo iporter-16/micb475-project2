@@ -29,16 +29,16 @@ daa_results_df <- pathway_daa(abundance = abundance_data %>% column_to_rownames(
                               daa_method = "LinDA", 
                               select = NULL, reference = NULL) 
 # Generate pathway heatmap
-# Please change column_to_rownames() to the feature column if you are not using example dataset
-# Please change group to "your_group_column" if you are not using example dataset
 feature_with_p_0.05 <- daa_results_df %>% filter(p_values < 0.05)
-pathway_heatmap(abundance = abundance_data %>% filter(pathway %in% feature_with_p_0.05$feature) %>% column_to_rownames("pathway"), metadata = metadata, group = "smoker")
+heatmap_smoker <- pathway_heatmap(abundance = abundance_data %>% filter(pathway %in% feature_with_p_0.05$feature) %>% column_to_rownames("pathway"), metadata = metadata, group = "smoker")
+heatmap_smoker
 
 # Generate pathway PCA plot
-# Please change column_to_rownames() to the feature column if you are not using example dataset
-# Please change group to "your_group_column" if you are not using example dataset
-pathway_pca(abundance = abundance_data %>% column_to_rownames("pathway"), metadata = metadata, group = "smoker")
-pathway_pca(abundance = abundance_data %>% column_to_rownames("pathway"), metadata = metadata, group = "LDL_category")
+pca_plot_smoker <- pathway_pca(abundance = abundance_data %>% column_to_rownames("pathway"), metadata = metadata, group = "smoker")
+pca_plot_smoker
+pca_plot_LDL <- pathway_pca(abundance = abundance_data %>% column_to_rownames("pathway"), metadata = metadata, group = "LDL_category")
+pca_plot_LDL
+
 # Run pathway DAA for multiple methods
 # Please change column_to_rownames() to the feature column if you are not using example dataset
 # Please change group to "your_group_column" if you are not using example dataset
