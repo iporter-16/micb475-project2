@@ -12,6 +12,11 @@ library(tidyverse)
 load("phyloseq_object_final.RData")
 samp_dat_wdiv <- data.frame(sample_data(phyloseq_object_final), estimate_richness(phyloseq_object_final))
 
+#Making a new column in the metadata to combined fibre and smoking
+sample_data(phyloseq_object_final)[[40]] = paste(sample_data(phyloseq_object_final)[[32]],sample_data(phyloseq_object_final)[[38]])
+#Making a new column in the metadata to combined LDL and smoking
+sample_data(phyloseq_object_final)[[41]] = paste(sample_data(phyloseq_object_final)[[32]],sample_data(phyloseq_object_final)[[37]])
+
 ### PERMANOVA (Permutational ANOVA) ####
 # Use phyloseq to calculate distance matrix
 dm_weighted_unifrac <- UniFrac(phyloseq_object_final, weighted=TRUE)#weighted unifrac
@@ -32,9 +37,10 @@ adonis2(dm_jaccard ~ `smoker`*LDL_category, data=samp_dat_wdiv)#jaccard
 ### PCoA plot ###
 # weighted unifrac
 ord.weighted_unifrac <- ordinate(phyloseq_object_final, method="PCoA", distance="unifrac", weighted=TRUE)
-gg_pcoa_wunifrac_fibre <- plot_ordination(phyloseq_object_final, ord.weighted_unifrac, color = "smoker", shape = "fibre_category") +
+gg_pcoa_wunifrac_fibre <- plot_ordination(phyloseq_object_final, ord.weighted_unifrac, color = "V40") +
   stat_ellipse(type = "norm")#smoker-fibre
-gg_pcoa_wunifrac_LDL <- plot_ordination(phyloseq_object_final, ord.weighted_unifrac, color = "smoker", shape = "LDL_category") +
+gg_pcoa_wunifrac_fibre
+gg_pcoa_wunifrac_LDL <- plot_ordination(phyloseq_object_final, ord.weighted_unifrac, color = "V41", shape = "LDL_category") +
   stat_ellipse(type = "norm")#smoker-LDL
 # unweighted unifrac
 ord.unweighted_unifrac <- ordinate(phyloseq_object_final, method="PCoA", distance="unifrac", weighted=FALSE)
