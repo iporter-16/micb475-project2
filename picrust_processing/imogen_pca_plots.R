@@ -42,5 +42,5 @@ PCA_smok_LDL <- pathway_pca(abundance = filtered_LDL_smok %>% column_to_rownames
 
 #Save plots. Only change wd to save plots!
 setwd("/Users/porte16049/Desktop/MICB475/micb475-project2/pcoa_plots")
-ggsave("pca_nonsmokers_LDL.png",PCA_nonsmok_LDL,scale=1)
+ggsave("pca_all_LDL.png",PCA_total,scale=1)
 ggsave("pca_smokers_LDL.png",PCA_smok_LDL,scale=1)
