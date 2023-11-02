@@ -27,9 +27,9 @@ abundance_data_nonsmoking$pathway = abundance_data$pathway
 abundance_data_nonsmoking <- abundance_data_nonsmoking %>% select(pathway, everything())
 
 #Run PCA plots
-pathway_pca(abundance = abundance_data %>% column_to_rownames("pathway"), metadata = metadata, group = "smoker")
-pathway_pca(abundance = abundance_data_nonsmoking %>% column_to_rownames("pathway"), metadata = metadata_nonsmoking, group = "LDL_category")
-pathway_pca(abundance = abundance_data_smoking %>% column_to_rownames("pathway"), metadata = metadata_smoking, group = "LDL_category")
+# pathway_pca(abundance = abundance_data %>% column_to_rownames("pathway"), metadata = metadata, group = "smoker")
+# pathway_pca(abundance = abundance_data_nonsmoking %>% column_to_rownames("pathway"), metadata = metadata_nonsmoking, group = "LDL_category")
+# pathway_pca(abundance = abundance_data_smoking %>% column_to_rownames("pathway"), metadata = metadata_smoking, group = "LDL_category")
 
 # Perform pathway differential abundance analysis (DAA) using LinDA
 daa_results_df <- pathway_daa(abundance = abundance_data %>% column_to_rownames("pathway"), metadata = metadata, 
@@ -67,3 +67,5 @@ feature_with_p_0.05_nonsmok_LDL <- daa_results_df_nonsmoking_LDL %>% filter(p_va
 heat_nonsmok_LDL <- pathway_heatmap(abundance = abundance_data_nonsmoking %>% filter(pathway %in% feature_with_p_0.05_nonsmok$feature) %>% 
                    column_to_rownames("pathway"), metadata = metadata, group = "LDL_category") + 
                   ggtitle("Significant differential expression in nonsmokers with high/low LDL")
+
+ggsave("/heatmaps/heatmap_smok_fibre.png",heat_smok)
