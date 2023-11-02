@@ -38,22 +38,21 @@ adonis2(dm_jaccard ~ `smoker`*LDL_category, data=samp_dat_wdiv)#jaccard
 # weighted unifrac
 ord.weighted_unifrac <- ordinate(phyloseq_object_final, method="PCoA", distance="unifrac", weighted=TRUE)
 gg_pcoa_wunifrac_fibre <- plot_ordination(phyloseq_object_final, ord.weighted_unifrac, color = "V40") +
-  stat_ellipse(type = "norm")#smoker-fibre
-gg_pcoa_wunifrac_fibre
+  labs(col="smoker, fibre category") + stat_ellipse(type = "norm")#smoker-fibre
 gg_pcoa_wunifrac_LDL <- plot_ordination(phyloseq_object_final, ord.weighted_unifrac, color = "V41", shape = "LDL_category") +
-  stat_ellipse(type = "norm")#smoker-LDL
+  labs(col="smoker, LDL category") + stat_ellipse(type = "norm")#smoker-LDL
 # unweighted unifrac
 ord.unweighted_unifrac <- ordinate(phyloseq_object_final, method="PCoA", distance="unifrac", weighted=FALSE)
-gg_pcoa_unwunifrac_fibre <- plot_ordination(phyloseq_object_final, ord.unweighted_unifrac, color = "smoker", shape = "fibre_category") +
-  stat_ellipse(type = "norm")#smoker-fibre
-gg_pcoa_unwunifrac_LDL <- plot_ordination(phyloseq_object_final, ord.unweighted_unifrac, color = "smoker", shape = "LDL_category") +
-  stat_ellipse(type = "norm")#smoker-LDL
+gg_pcoa_unwunifrac_fibre <- plot_ordination(phyloseq_object_final, ord.unweighted_unifrac, color = "V40") +
+  labs(col="smoker, fibre category") + stat_ellipse(type = "norm")#smoker-fibre
+gg_pcoa_unwunifrac_LDL <- plot_ordination(phyloseq_object_final, ord.unweighted_unifrac, color = "V41") +
+  labs(col="smoker, LDL category") + stat_ellipse(type = "norm")#smoker-LDL
 # bray-curtis
 ord.bray <- ordinate(phyloseq_object_final, method="PCoA", distance="bray")
-gg_pcoa_bray_fibre <- plot_ordination(phyloseq_object_final, ord.bray, color = "smoker", shape = "fibre_category") +
-  stat_ellipse(type = "norm")#smoker-fibre
-gg_pcoa_bray_LDL <- plot_ordination(phyloseq_object_final, ord.bray, color = "smoker", shape = "LDL_category") +
-  stat_ellipse(type = "norm")#smoker-LDL
+gg_pcoa_bray_fibre <- plot_ordination(phyloseq_object_final, ord.bray, color = "V40") +
+  labs(col="smoker, fibre category") + stat_ellipse(type = "norm")#smoker-fibre
+gg_pcoa_bray_LDL <- plot_ordination(phyloseq_object_final, ord.bray, color = "V41") +
+  labs(col="smoker, LDL category") + stat_ellipse(type = "norm")#smoker-LDL
 
 ### Save plots ###
 ggsave("plot_pcoa_wunifrac_fibre.png"
@@ -76,43 +75,43 @@ ggsave("plot_pcoa_bray_LDL.png"
        , height=4, width=5)
 
 #### Oct 24, 2023 - SKA ####
-# PCoA Plot
-# bray-curtis
-bc_dm <- distance(phyloseq_object_final, method="bray")
-pcoa_bc <- ordinate(phyloseq_object_final, method="PCoA", distance=bc_dm)
-
-gg_pcoa_bc_fibre <- plot_ordination(phyloseq_object_final, pcoa_bc, color = "fibre_category", shape="smoker") +
-  labs(pch="smoking status", col = "fibre level") + stat_ellipse()
-gg_pcoa_bc_fibre
-gg_pcoa_bc_LDL <- plot_ordination(phyloseq_object_final, pcoa_bc, color = "LDL_category", shape="smoker") +
-  labs(pch="smoking status", col = "LDL level") + stat_ellipse()
-gg_pcoa_bc_LDL
-
-# weighted unifrac
-wu_dm <- distance(phyloseq_object_final, method="unifrac", weighted=TRUE)
-pcoa_wu <- ordinate(phyloseq_object_final, method="PCoA", wu_dm)
-gg_pcoa_wu_fibre <- plot_ordination(phyloseq_object_final, pcoa_wu, color = "fibre_category", shape="smoker") +
-  labs(pch="smoking status", col = "fibre level") + stat_ellipse()
-gg_pcoa_wu_fibre
-gg_pcoa_wu_LDL <- plot_ordination(phyloseq_object_final, pcoa_wu, color = "LDL_category", shape="smoker") +
-  labs(pch="smoking status", col = "fibre level") + stat_ellipse()
-gg_pcoa_wu_LDL
-
-# unweighted unifrac
-unwu_dm <- distance(phyloseq_object_final, method="unifrac", weighted=FALSE)
-pcoa_unwu <- ordinate(phyloseq_object_final, method="PCoA", unwu_dm)
-gg_pcoa_unwu_fibre <- plot_ordination(phyloseq_object_final, pcoa_unwu, color = "fibre_category", shape="smoker") +
-  labs(pch="smoking status", col = "fibre level") + stat_ellipse()
-gg_pcoa_unwu_fibre
-gg_pcoa_unwu_LDL <- plot_ordination(phyloseq_object_final, pcoa_unwu, color = "LDL_category", shape="smoker") +
-  labs(pch="smoking status", col = "fibre level") + stat_ellipse()
-gg_pcoa_unwu_LDL
-
-# Save plots
-ggsave("plot_pcoa_fibre.png"
-       , gg_pcoa_fibre
-       , height=4, width=5)
-
-ggsave("plot_pcoa_LDL.png"
-       , gg_pcoa_LDL
-       , height=4, width=5)
+# # PCoA Plot
+# # bray-curtis
+# bc_dm <- distance(phyloseq_object_final, method="bray")
+# pcoa_bc <- ordinate(phyloseq_object_final, method="PCoA", distance=bc_dm)
+# 
+# gg_pcoa_bc_fibre <- plot_ordination(phyloseq_object_final, pcoa_bc, color = "fibre_category", shape="smoker") +
+#   labs(pch="smoking status", col = "fibre level") + stat_ellipse()
+# gg_pcoa_bc_fibre
+# gg_pcoa_bc_LDL <- plot_ordination(phyloseq_object_final, pcoa_bc, color = "LDL_category", shape="smoker") +
+#   labs(pch="smoking status", col = "LDL level") + stat_ellipse()
+# gg_pcoa_bc_LDL
+# 
+# # weighted unifrac
+# wu_dm <- distance(phyloseq_object_final, method="unifrac", weighted=TRUE)
+# pcoa_wu <- ordinate(phyloseq_object_final, method="PCoA", wu_dm)
+# gg_pcoa_wu_fibre <- plot_ordination(phyloseq_object_final, pcoa_wu, color = "fibre_category", shape="smoker") +
+#   labs(pch="smoking status", col = "fibre level") + stat_ellipse()
+# gg_pcoa_wu_fibre
+# gg_pcoa_wu_LDL <- plot_ordination(phyloseq_object_final, pcoa_wu, color = "LDL_category", shape="smoker") +
+#   labs(pch="smoking status", col = "fibre level") + stat_ellipse()
+# gg_pcoa_wu_LDL
+# 
+# # unweighted unifrac
+# unwu_dm <- distance(phyloseq_object_final, method="unifrac", weighted=FALSE)
+# pcoa_unwu <- ordinate(phyloseq_object_final, method="PCoA", unwu_dm)
+# gg_pcoa_unwu_fibre <- plot_ordination(phyloseq_object_final, pcoa_unwu, color = "fibre_category", shape="smoker") +
+#   labs(pch="smoking status", col = "fibre level") + stat_ellipse()
+# gg_pcoa_unwu_fibre
+# gg_pcoa_unwu_LDL <- plot_ordination(phyloseq_object_final, pcoa_unwu, color = "LDL_category", shape="smoker") +
+#   labs(pch="smoking status", col = "fibre level") + stat_ellipse()
+# gg_pcoa_unwu_LDL
+# 
+# # Save plots
+# ggsave("plot_pcoa_fibre.png"
+#        , gg_pcoa_fibre
+#        , height=4, width=5)
+# 
+# ggsave("plot_pcoa_LDL.png"
+#        , gg_pcoa_LDL
+#        , height=4, width=5)
