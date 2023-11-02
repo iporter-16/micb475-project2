@@ -4,7 +4,16 @@ Organised by date, descending.
 
 **Proposal** https://docs.google.com/document/d/1oZlL-Ai-Lp_nA-4W0G4WqwVJkbWYVR4hhuk1EpJy-nc/edit
 
-[Oct 2](#oct-2) ; [Oct 5](#oct-5) ; [Oct 12](#oct-12) ; [Oct 19](#oct-19)
+[Oct 2](#oct-2) ; [Oct 5](#oct-5) ; [Oct 12](#oct-12) ; [Oct 19](#oct-19) ; [Oct 26](#oct-26)
+
+## Nov 2
+
+### To-do:
+
+- **Imogen:** Export all plots onto Github _(done!)_
+- Combine plots 
+- Lit review on results (pathways up/down regulated in LDL samples, pathways needed to be excluded in PCA plots)
+- Compare top 10 results between LinDA, deseq, aldex2, edgeR
 
 ## Oct 26
 
