@@ -10,7 +10,7 @@ library(patchwork)
 abundance_file <- "picrust_processing/picrust2_out_pipeline/pathways_out/path_abun_unstrat.tsv.gz"
 abundance_data <- read_delim(abundance_file, delim = "\t", col_names = TRUE, trim_ws = TRUE) %>% as.data.frame()
 abundance_data$pathway = rownames(abundance_data)
-abundance_data = abundance_data[,-1]
+#abundance_data = abundance_data[,-1]
 # load metadata
 metadata <- read_delim("colombia/metadata_categorized_CL.txt",
                        delim = "\t",
@@ -22,7 +22,7 @@ metadata <- read_delim("colombia/metadata_categorized_CL.txt",
 # kegg_abundance <- ko2kegg_abundance("picrust_processing/picrust2_out_pipeline/KO_metagenome_out/pred_metagenome_unstrat.tsv") 
 
 # Perform pathway differential abundance analysis (DAA) using ALDEx2 method
-daa_results_df <- pathway_daa(abundance = abundance_data, 
+daa_results_df <- pathway_daa(abundance = abundance_data[,-1], 
                               metadata = metadata, 
                               group = "smoker", 
                               daa_method = "LinDA", 
