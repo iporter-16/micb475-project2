@@ -1,3 +1,4 @@
+#!/bin/R
 #PURPOSE: From picrust2 analysis, produces PCA plots for smokers and nonsmokers
 library(ggpicrust2)
 library(tibble)

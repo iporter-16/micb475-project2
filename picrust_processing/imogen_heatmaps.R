@@ -1,3 +1,4 @@
+#!/bin/R
 #From picrust2 analysis, produces heatmaps of pathways signififantly (p<0.05 up or downregulated)
 #in smoking and nonsmoking adults, displaying their fiber consumption (high or low)
 library(readr)
@@ -66,3 +67,8 @@ heat_nonsmok_LDL <- pathway_heatmap(abundance = abundance_data_nonsmoking %>% fi
 #Saving heatmaps
 # setwd("/Users/porte16049/Desktop/MICB475/micb475-project2/heatmaps")
 # ggsave("heatmap_smok.png",heat_smok,scale=2)
+
+### Pulling interesting data from the LDL smoking heatplot
+interesting_pathways <- abundance_data_smoking %>% filter(pathway %in% feature_with_p_0.05_smok$feature)
+all_interesting <- data.frame(feature=c(interesting_pathways$pathway))
+all_interesting <- pathway_annotation(pathway = "MetaCyc", daa_results_df = all_interesting, ko_to_kegg = FALSE)
