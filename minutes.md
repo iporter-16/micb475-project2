@@ -12,7 +12,8 @@ Organised by date, descending.
 
 - **Imogen:** Export all plots onto Github _(done!)_
 - Combine plots 
-- Lit review on results (pathways up/down regulated in LDL samples, pathways needed to be excluded in PCA plots)
+- **Imogen & ?:** [Lit review](https://docs.google.com/document/d/1gAc4GGjX9uzj-aR70NqgcJvRnQcLFoWcT7jLYDcZJVs/edit) on results: pathways up/down regulated in LDL samples
+- **Imogen:**  Lit review on results: pathways needed to be excluded in PCA plots _(done! dead end -i)_
 - Compare top 10 results between LinDA, deseq, aldex2, edgeR
 
 ## Oct 26
