@@ -73,3 +73,20 @@ daa_results_list_smoking_LDL <- lapply(methods, function(method) {
 daa_results_list_nonsmoking_LDL <- lapply(methods, function(method) {
   pathway_daa(abundance = abundance_data_nonsmoking %>% column_to_rownames("pathway"), metadata = metadata, group = "LDL_category", daa_method = method)
 })
+
+# print(daa_results_list[[1]])
+
+### Generate pathway heatmap using multiple methods###
+# smokers only
+# feature_with_p_0.05 <- daa_results_df %>% filter(p_values < 0.05)
+sig_feature_list <- lapply(daa_results_list, function(results) {
+  results %>% filter(p_values < 0.05)
+})
+heatmap_list_smoker <- lapply(sig_feature_list, function(sig) {
+  pathway_heatmap(abundance = abundance_data %>% filter(pathway %in% sig$feature) %>% column_to_rownames("pathway"), metadata = metadata, group = "smoker")
+})
+heatmap_ALDEx2_smoker <- heatmap_list_smoker[[1]]
+heatmap_ALDEx2_smoker
+heatmap_ALDEx2_smoker <- heatmap_list_smoker[[1]]
+heatmap_ALDEx2_smoker <- heatmap_list_smoker[[1]]
+# heatmap_smoker
