@@ -11,6 +11,7 @@ Organised by date, descending.
 |-----------------------------------------	|---------	|
 | Alpha diversity: no significant data is shown between the groups                        |  |
 | Distribute tasks for manuscript writing?                        |  |
+| Analyses Comparisons: how do we get the top 10 pathways? |  |  
 
 ## Nov 2
 
