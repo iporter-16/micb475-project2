@@ -69,7 +69,7 @@ daa_results_list_nonsmoking_LDL <- lapply(methods, function(method) {
 
 # print(daa_results_list[[1]])
 
-### Generate pathway heatmap using multiple methods###
+### Generate pathway heatmap using multiple methods ###
 ## smokers only
 sig_feature_list <- lapply(daa_results_list, function(results) {
   results %>% filter(p_values < 0.05)
