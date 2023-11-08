@@ -16,6 +16,7 @@ library(ggh4x)
 library(ALDEx2)
 library(edgeR)
 library(DESeq2)
+library(dplyr)
 
 ### Read abundance data
 abundance_file <- "picrust_processing/picrust2_out_pipeline/pathways_out/path_abun_unstrat.tsv"
