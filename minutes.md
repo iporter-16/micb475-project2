@@ -10,6 +10,7 @@ Organised by date, descending.
 | Agenda item                                                                        	| Conclusion 	|
 |-----------------------------------------	|---------	|
 | Alpha diversity: no significant data is shown between the groups                        |  |
+| Distribute tasks for manuscript writing?                        |  |
 
 ## Nov 2
 
