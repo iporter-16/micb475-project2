@@ -38,7 +38,7 @@ row_sds_smok <- abundance_data_smoking %>% column_to_rownames("pathway") %>% app
 filtered_LDL_smok <- abundance_data_smoking[row_sds_smok != 0, ]
 row.names(filtered_LDL_smok) <- NULL
 
-### Perform pathway differential abundance analysis (DAA) ###
+### Perform pathway differential abundance analysis (DAA) ### # tbd: combine LinDA method with other methods
 ## LinDA method
 daa_results_df <- pathway_daa(abundance = abundance_data %>% column_to_rownames("pathway"), 
                               metadata = metadata, 
