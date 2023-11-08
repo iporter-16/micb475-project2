@@ -1,11 +1,6 @@
 #### Nov 7, 2023 - SKA ####
 #!/usr/bin/env Rscript
-pkgs <- c("ALDEx2", "edgeR", "DESeq2")
 
-for (pkg in pkgs) {
-  if (!requireNamespace(pkg, quietly = TRUE))
-    BiocManager::install(pkg)
-}
 ### Load packages
 library(ggpicrust2)
 library(tibble)
@@ -17,6 +12,11 @@ library(ALDEx2)
 library(edgeR)
 library(DESeq2)
 
+mtcars %>% 
+  dplyr::select(cyl, mpg) %>% 
+  group_by(cyl) %>% 
+  summarize(avg_mpg = mean(mpg)) 
+
 ### Read abundance data
 abundance_file <- "picrust_processing/picrust2_out_pipeline/pathways_out/path_abun_unstrat.tsv"
 abundance_data <- read_delim(abundance_file, delim = "\t", col_names = TRUE, trim_ws = TRUE) %>% as.data.frame()
@@ -27,13 +27,13 @@ metadata <- read_delim("colombia/metadata_categorized_CL.txt",delim = "\t",escap
 metadata_smoking <- filter(metadata, metadata$smoker=="Yes")
 metadata_nonsmoking <- filter(metadata, metadata$smoker=="No")
 
-abundance_data_smoking <- select(abundance_data, metadata_smoking$`#SampleID`)
+abundance_data_smoking <- dplyr::select(abundance_data, metadata_smoking$`#SampleID`) # if MASS package is installed, it will mask select() from dplyr - using dplyr:: forces R to use select() directly from dplyr package
 abundance_data_smoking$pathway = abundance_data$pathway
-abundance_data_smoking <- abundance_data_smoking %>% select(pathway, everything())
+abundance_data_smoking <- abundance_data_smoking %>% dplyr::select(pathway, everything())
 
-abundance_data_nonsmoking <- select(abundance_data, metadata_nonsmoking$`#SampleID`)
+abundance_data_nonsmoking <- dplyr::select(abundance_data, metadata_nonsmoking$`#SampleID`)
 abundance_data_nonsmoking$pathway = abundance_data$pathway
-abundance_data_nonsmoking <- abundance_data_nonsmoking %>% select(pathway, everything())
+abundance_data_nonsmoking <- abundance_data_nonsmoking %>% dplyr::select(pathway, everything())
 
 ### Filter data to remove 0 standard deviation
 row_sds_nonsmok <- abundance_data_nonsmoking %>% column_to_rownames("pathway") %>% apply(1, sd)
