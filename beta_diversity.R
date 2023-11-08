@@ -39,7 +39,7 @@ adonis2(dm_jaccard ~ `smoker`*LDL_category, data=samp_dat_wdiv)#jaccard
 ord.weighted_unifrac <- ordinate(phyloseq_object_final, method="PCoA", distance="unifrac", weighted=TRUE)
 gg_pcoa_wunifrac_fibre <- plot_ordination(phyloseq_object_final, ord.weighted_unifrac, color = "V40") +
   labs(col="smoker, fibre category") + stat_ellipse(type = "norm")#smoker-fibre
-gg_pcoa_wunifrac_LDL <- plot_ordination(phyloseq_object_final, ord.weighted_unifrac, color = "V41", shape = "LDL_category") +
+gg_pcoa_wunifrac_LDL <- plot_ordination(phyloseq_object_final, ord.weighted_unifrac, color = "V41") +
   labs(col="smoker, LDL category") + stat_ellipse(type = "norm")#smoker-LDL
 # unweighted unifrac
 ord.unweighted_unifrac <- ordinate(phyloseq_object_final, method="PCoA", distance="unifrac", weighted=FALSE)
@@ -55,24 +55,14 @@ gg_pcoa_bray_LDL <- plot_ordination(phyloseq_object_final, ord.bray, color = "V4
   labs(col="smoker, LDL category") + stat_ellipse(type = "norm")#smoker-LDL
 
 ### Save plots ###
-ggsave("plot_pcoa_wunifrac_fibre.png"
-       , gg_pcoa_wunifrac_fibre
-       , height=4, width=5)
-ggsave("plot_pcoa_wunifrac_LDL.png"
-       , gg_pcoa_wunifrac_LDL
-       , height=4, width=5)
-ggsave("plot_pcoa_unwunifrac_fibre.png"
-       , gg_pcoa_unwunifrac_fibre
-       , height=4, width=5)
-ggsave("plot_pcoa_unwunifrac_LDL.png"
-       , gg_pcoa_unwunifrac_LDL
-       , height=4, width=5)
-ggsave("plot_pcoa_bray_fibre.png"
-       , gg_pcoa_bray_fibre
-       , height=4, width=5)
-ggsave("plot_pcoa_bray_LDL.png"
-       , gg_pcoa_bray_LDL
-       , height=4, width=5)
+# setwd("/Users/saman/Desktop/micb475-project2/pcoa_plots/beta_diversity")
+# ggsave("plot_pcoa_wunifrac_fibre.png", gg_pcoa_wunifrac_fibre, height=4, width=5)
+# ggsave("plot_pcoa_wunifrac_LDL.png", gg_pcoa_wunifrac_LDL, height=4, width=5)
+# ggsave("plot_pcoa_unwunifrac_fibre.png", gg_pcoa_unwunifrac_fibre, height=4, width=5)
+# ggsave("plot_pcoa_unwunifrac_LDL.png", gg_pcoa_unwunifrac_LDL, height=4, width=5)
+# ggsave("plot_pcoa_bray_fibre.png", gg_pcoa_bray_fibre, height=4, width=5)
+# ggsave("plot_pcoa_bray_LDL.png", gg_pcoa_bray_LDL, height=4, width=5)
+# setwd("/Users/saman/Desktop/micb475-project2")
 
 #### Oct 24, 2023 - SKA ####
 # # PCoA Plot
