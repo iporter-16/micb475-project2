@@ -6,7 +6,7 @@ Organised by date, descending.
 
 [Oct 2](#oct-2) ; [Oct 5](#oct-5) ; [Oct 12](#oct-12) ; [Oct 19](#oct-19) ; [Oct 26](#oct-26)
 
-## Nov 7
+## Nov 9
 | Agenda item                                                                        	| Conclusion 	|
 |-----------------------------------------	|---------	|
 | Alpha diversity: no significant data is shown between the groups                        |  |
