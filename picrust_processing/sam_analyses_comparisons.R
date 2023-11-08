@@ -79,40 +79,76 @@ heatmap_list_smoker <- lapply(sig_feature_list, function(sig) {
   pathway_heatmap(abundance = abundance_data %>% filter(pathway %in% sig$feature) %>% column_to_rownames("pathway"), metadata = metadata, group = "smoker")
 }) # smokers only
 heatmap_list_smoking_fibre <- lapply(sig_feature_list_smoking_fibre, function(sig) {
-  pathway_heatmap(abundance = abundance_data %>% filter(pathway %in% sig$feature) %>% column_to_rownames("pathway"), metadata = metadata, group = "fibre_category")
+  pathway_heatmap(abundance = abundance_data_smoking %>% filter(pathway %in% sig$feature) %>% column_to_rownames("pathway"), metadata = metadata, group = "fibre_category")
 }) # smoking-fibre
 heatmap_list_nonsmoking_fibre <- lapply(sig_feature_list_nonsmoking_fibre, function(sig) {
-  pathway_heatmap(abundance = abundance_data %>% filter(pathway %in% sig$feature) %>% column_to_rownames("pathway"), metadata = metadata, group = "fibre_category")
+  pathway_heatmap(abundance = abundance_data_nonsmoking %>% filter(pathway %in% sig$feature) %>% column_to_rownames("pathway"), metadata = metadata, group = "fibre_category")
 }) # nonsmoking-fibre
 heatmap_list_smoking_LDL <- lapply(sig_feature_list_smoking_LDL, function(sig) {
-  pathway_heatmap(abundance = abundance_data %>% filter(pathway %in% sig$feature) %>% column_to_rownames("pathway"), metadata = metadata, group = "LDL_category")
+  pathway_heatmap(abundance = abundance_data_smoking %>% filter(pathway %in% sig$feature) %>% column_to_rownames("pathway"), metadata = metadata, group = "LDL_category")
 }) # smoking-LDL
 heatmap_list_nonsmoking_LDL <- lapply(sig_feature_list_nonsmoking_LDL, function(sig) {
-  pathway_heatmap(abundance = abundance_data %>% filter(pathway %in% sig$feature) %>% column_to_rownames("pathway"), metadata = metadata, group = "LDL_category")
+  pathway_heatmap(abundance = abundance_data_nonsmoking %>% filter(pathway %in% sig$feature) %>% column_to_rownames("pathway"), metadata = metadata, group = "LDL_category")
 }) # nonsmoking-LDL
 
+### Assigning each heatmap ###
+## smoker only
 heatmap_DESeq2_smoker <- heatmap_list_smoker[[1]]
 heatmap_edgeR_smoker <- heatmap_list_smoker[[2]]
 heatmap_LinDA_smoker <- heatmap_list_smoker[[3]]
 # heatmap_ALDEx2_smoker <- heatmap_list_smoker[[4]]
-
+## smoking-fibre
 heatmap_DESeq2_smoking_fibre <- heatmap_list_smoking_fibre[[1]]
 heatmap_edgeR_smoking_fibre <- heatmap_list_smoking_fibre[[2]]
 heatmap_LinDA_smoking_fibre <- heatmap_list_smoking_fibre[[3]]
 # heatmap_ALDEx2_smoking_fibre <- heatmap_list_smoking_fibre[[4]]
-
+## nonsmoking-fibre
 heatmap_DESeq2_nonsmoking_fibre <- heatmap_list_nonsmoking_fibre[[1]]
 heatmap_edgeR_nonsmoking_fibre <- heatmap_list_nonsmoking_fibre[[2]]
 heatmap_LinDA_nonsmoking_fibre <- heatmap_list_nonsmoking_fibre[[3]]
 # heatmap_ALDEx2_nonsmoking_fibre <- heatmap_list_nonsmoking_fibre[[4]]
-
+## smoking-LDL
 heatmap_DESeq2_smoking_LDL <- heatmap_list_smoking_LDL[[1]]
 heatmap_edgeR_smoking_LDL <- heatmap_list_smoking_LDL[[2]]
 heatmap_LinDA_smoking_LDL <- heatmap_list_smoking_LDL[[3]]
 # heatmap_ALDEx2_smoking_LDL <- heatmap_list_smoking_LDL[[4]]
-
+## nonsmoking-LDL
 heatmap_DESeq2_nonsmoking_LDL <- heatmap_list_nonsmoking_LDL[[1]]
 heatmap_edgeR_nonsmoking_LDL <- heatmap_list_nonsmoking_LDL[[2]]
 heatmap_LinDA_nonsmoking_LDL <- heatmap_list_nonsmoking_LDL[[3]]
 # heatmap_ALDEx2_nonsmoking_LDL <- heatmap_list_nonsmoking_LDL[[4]]
 
+### Interesting Pathways ###
+interesting_pathways_list <- lapply(sig_feature_list, function(sig) {
+  abundance_data %>% filter(pathway %in% sig$feature)
+}) # smoker only
+interesting_pathways_list_smoking_fibre <- lapply(sig_feature_list_smoking_fibre, function(sig) {
+  abundance_data_smoking %>% filter(pathway %in% sig$feature)
+}) # smoking-fibre
+interesting_pathways_list_nonsmoking_fibre <- lapply(sig_feature_list_nonsmoking_fibre, function(sig) {
+  abundance_data_nonsmoking %>% filter(pathway %in% sig$feature)
+}) # nonsmoking-fibre
+interesting_pathways_list_smoking_LDL <- lapply(sig_feature_list_smoking_LDL, function(sig) {
+  abundance_data_smoking %>% filter(pathway %in% sig$feature)
+}) # smoking-LDL
+interesting_pathways_list_nonsmoking_LDL <- lapply(sig_feature_list_nonsmoking_LDL, function(sig) {
+  abundance_data_nonsmoking %>% filter(pathway %in% sig$feature)
+}) # nonsmoking-LDL
+
+all_interesting_list <- lapply(interesting_pathways_list, function(interesting) {
+  data.frame(feature=c(interesting$pathway))
+}) # smoker only
+all_interesting_list_smoking_fibre <- lapply(interesting_pathways_list_smoking_fibre, function(interesting) {
+  data.frame(feature=c(interesting$pathway))
+}) # smoking-fibre
+all_interesting_list_nonsmoking_fibre <- lapply(interesting_pathways_list_nonsmoking_fibre, function(interesting) {
+  data.frame(feature=c(interesting$pathway))
+}) # nonsmoking-fibre
+all_interesting_list_smoking_LDL <- lapply(interesting_pathways_list_smoking_LDL, function(interesting) {
+  data.frame(feature=c(interesting$pathway))
+}) # smoking-LDL
+all_interesting_list_nonsmoking_LDL <- lapply(interesting_pathways_list_nonsmoking_LDL, function(interesting) {
+  data.frame(feature=c(interesting$pathway))
+}) # nonsmoking-LDL
+
+all_interesting <- pathway_annotation(pathway = "MetaCyc", daa_results_df = all_interesting, ko_to_kegg = FALSE)
