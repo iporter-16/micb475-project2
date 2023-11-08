@@ -31,13 +31,17 @@ daa_results_df <- pathway_daa(abundance = abundance_data %>% column_to_rownames(
 # Generate pathway heatmap
 feature_with_p_0.05 <- daa_results_df %>% filter(p_values < 0.05)
 heatmap_smoker <- pathway_heatmap(abundance = abundance_data %>% filter(pathway %in% feature_with_p_0.05$feature) %>% column_to_rownames("pathway"), metadata = metadata, group = "smoker")
-heatmap_smoker
+# heatmap_smoker
 
 # Generate pathway PCA plot
-pca_plot_smoker <- pathway_pca(abundance = abundance_data %>% column_to_rownames("pathway"), metadata = metadata, group = "smoker")
-pca_plot_smoker
-pca_plot_LDL <- pathway_pca(abundance = abundance_data %>% column_to_rownames("pathway"), metadata = metadata, group = "LDL_category")
-pca_plot_LDL
+pca_plot_smoker <- pathway_pca(abundance = abundance_data %>% column_to_rownames("pathway"), metadata = metadata, group = "smoker")+ggtitle("PCA plot comparing smoking in all participants")
+# pca_plot_smoker
+pca_plot_LDL <- pathway_pca(abundance = abundance_data %>% column_to_rownames("pathway"), metadata = metadata, group = "LDL_category")+ggtitle("PCA plot comparing LDL in all participants")
+# pca_plot_LDL
+
+# setwd("/Users/saman/Desktop/micb475-project2/pcoa_plots")
+# ggsave("pca_smoker_all.png", pca_plot_smoker, scale=1)
+# ggsave("pca_LDL_all.png", pca_plot_LDL, scale=1)
 
 # Run pathway DAA for multiple methods
 # Please change column_to_rownames() to the feature column if you are not using example dataset
