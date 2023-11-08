@@ -6,6 +6,11 @@ Organised by date, descending.
 
 [Oct 2](#oct-2) ; [Oct 5](#oct-5) ; [Oct 12](#oct-12) ; [Oct 19](#oct-19) ; [Oct 26](#oct-26)
 
+## Nov 7
+| Agenda item                                                                        	| Conclusion 	|
+|-----------------------------------------	|---------	|
+| Alpha diversity: no significant data is shown between the groups                        |  |
+
 ## Nov 2
 
 ### To-do:
@@ -15,6 +20,7 @@ Organised by date, descending.
 - **Imogen & ?:** [Lit review](https://docs.google.com/document/d/1gAc4GGjX9uzj-aR70NqgcJvRnQcLFoWcT7jLYDcZJVs/edit) on results: pathways up/down regulated in LDL samples
 - **Imogen:**  Lit review on results: pathways needed to be excluded in PCA plots _(done! dead end -i)_
 - Compare top 10 results between LinDA, deseq, aldex2, edgeR
+- **Tiffany:** Alpha diversity signifiance comparison (https://docs.google.com/presentation/d/1pIplkOJ19TjLork48qhRfuhgrWncWUlC/edit?usp=sharing&ouid=103207874254987114452&rtpof=true&sd=true)
 
 ## Oct 26
 
