@@ -21,7 +21,7 @@ Organised by date, descending.
 - **Imogen & ?:** [Lit review](https://docs.google.com/document/d/1gAc4GGjX9uzj-aR70NqgcJvRnQcLFoWcT7jLYDcZJVs/edit) on results: pathways up/down regulated in LDL samples
 - **Imogen:**  Lit review on results: pathways needed to be excluded in PCA plots _(done! dead end -i)_
 - Compare top 10 results between LinDA, deseq, aldex2, edgeR
-- **Tiffany:** Alpha diversity signifiance comparison (https://docs.google.com/presentation/d/1pIplkOJ19TjLork48qhRfuhgrWncWUlC/edit?usp=sharing&ouid=103207874254987114452&rtpof=true&sd=true)
+- **Tiffany:** [Alpha diversity signifiance comparison](https://docs.google.com/presentation/d/1pIplkOJ19TjLork48qhRfuhgrWncWUlC/edit?usp=sharing&ouid=103207874254987114452&rtpof=true&sd=true)
 
 ## Oct 26
 
