@@ -87,6 +87,6 @@ heatmap_list_smoker <- lapply(sig_feature_list, function(sig) {
 })
 heatmap_ALDEx2_smoker <- heatmap_list_smoker[[1]]
 heatmap_ALDEx2_smoker
-heatmap_ALDEx2_smoker <- heatmap_list_smoker[[1]]
-heatmap_ALDEx2_smoker <- heatmap_list_smoker[[1]]
+heatmap_DESeq2_smoker <- heatmap_list_smoker[[2]]
+heatmap_edgeR_smoker <- heatmap_list_smoker[[3]]
 # heatmap_smoker
