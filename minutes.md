@@ -20,7 +20,7 @@ Tiffany + Alice –> **DESeq analysis** to figure out if there are a few specifi
 - Test smokers high/low LDL, check which bacteria are upregulated.
 - Hope to see less difference between high/low LDL in nonsmokers.
 
-Imogen -> Perform using **Chris's DESeq function (will be emailed)** on smoker/nonsmoker high/low LDL groups.
+Sean + Sam -> Perform using **Chris's DESeq function (will be emailed)** on smoker/nonsmoker high/low LDL groups.
 
 Start manuscript drafting!
 
