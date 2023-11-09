@@ -4,13 +4,14 @@ Organised by date, descending.
 
 **Proposal** https://docs.google.com/document/d/1oZlL-Ai-Lp_nA-4W0G4WqwVJkbWYVR4hhuk1EpJy-nc/edit
 
-[Oct 2](#oct-2) ; [Oct 5](#oct-5) ; [Oct 12](#oct-12) ; [Oct 19](#oct-19) ; [Oct 26](#oct-26)
+[Oct 2](#oct-2) ; [Oct 5](#oct-5) ; [Oct 12](#oct-12) ; [Oct 19](#oct-19) ; [Oct 26](#oct-26) ; [Nov 2](#nov-2) ; [Nov 9](#nov-9)
 
 ## Nov 9
 | Agenda item                                                                        	| Conclusion 	|
 |-----------------------------------------	|---------	|
 | Alpha diversity: no significant data is shown between the groups                        |  |
 | Distribute tasks for manuscript writing?                        |  |
+| Analyses Comparisons: how do we get the top 10 pathways? |  |  
 
 ## Nov 2
 
