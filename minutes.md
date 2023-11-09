@@ -17,7 +17,7 @@ Organised by date, descending.
 
 Tiffany + Alice –> **DESeq analysis** to figure out if there are a few specific genus / species that are affected in abundance, resulting in changes in metabolic information during picrust. Run on taxonomic-level table (phyloseq object w/OTU table + taxonomy file, prior to picrust analyses), then lit review for metabolic functions to see if it aligns with metabolic results
 
-- Test smokers high/low LDL, check which bacteria are unregulated.
+- Test smokers high/low LDL, check which bacteria are upregulated.
 - Hope to see less difference between high/low LDL in nonsmokers.
 
 Imogen -> Perform using **Chris's DESeq function (will be emailed)** on smoker/nonsmoker high/low LDL groups.
