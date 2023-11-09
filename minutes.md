@@ -13,6 +13,15 @@ Organised by date, descending.
 | Distribute tasks for manuscript writing?                        |  |
 | Analyses Comparisons: how do we get the top 10 pathways? |  |  
 
+### Next steps:
+
+DESeq analysis to figure out if there are a few specific genus / species that are affected in abundance, resulting in changes in metabolic information during picrust
+
+–> Test smokers high/low LDL, check which bacteria are unregulated.
+
+–> Hope to see less difference between high/low LDL in nonsmokers.
+
+
 ## Nov 2
 
 ### To-do:
