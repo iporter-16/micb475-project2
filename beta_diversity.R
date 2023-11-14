@@ -1,4 +1,4 @@
-#### Oct 26, 2023 - SKA ####
+#### Nov 9, 2023 - SKA ####
 #!/usr/bin/env Rscript
 
 ### Beta Diversity ###
@@ -9,13 +9,8 @@ library(phyloseq)
 library(tidyverse)
 
 # Load phyloseq object
-load("phyloseq_object_final.RData")
+load("phyloseq_object_final_highcount.RData")
 samp_dat_wdiv <- data.frame(sample_data(phyloseq_object_final), estimate_richness(phyloseq_object_final))
-
-#Making a new column in the metadata to combined fibre and smoking
-sample_data(phyloseq_object_final)[[40]] = paste(sample_data(phyloseq_object_final)[[32]],sample_data(phyloseq_object_final)[[38]])
-#Making a new column in the metadata to combined LDL and smoking
-sample_data(phyloseq_object_final)[[41]] = paste(sample_data(phyloseq_object_final)[[32]],sample_data(phyloseq_object_final)[[37]])
 
 ### PERMANOVA (Permutational ANOVA) ####
 # Use phyloseq to calculate distance matrix
@@ -33,6 +28,35 @@ adonis2(dm_weighted_unifrac ~ `smoker`*LDL_category, data=samp_dat_wdiv)#weighte
 adonis2(dm_unweighted_unifrac ~ `smoker`*LDL_category, data=samp_dat_wdiv)#unweighted unifrac
 adonis2(dm_bray ~ `smoker`*LDL_category, data=samp_dat_wdiv)#bray-curtis
 adonis2(dm_jaccard ~ `smoker`*LDL_category, data=samp_dat_wdiv)#jaccard
+
+### PCoA Plot - Final Figure ###
+# Beta Diversity figure panel will include Weighted Unifrac PCoA Plot of the smoker and LDL categories, 
+# divided into 2 plots, one with smokers only and the other with nonsmokers only
+## Filter smokers only and nonsmokers only ##
+view(sample_data(phyloseq_object_final_highcount))
+phyloseq_object_smoking <- subset_samples(phyloseq_object_final_highcount, smoker == "Yes")
+phyloseq_object_nonsmoking <- subset_samples(phyloseq_object_final_highcount, smoker == "No")
+view(sample_data(phyloseq_object_smoking))
+## Generate PCoA plots using weighted unifrac ##
+ord.weighted_unifrac_smoking <- ordinate(phyloseq_object_smoking, method="PCoA", distance="unifrac", weighted=TRUE)
+ord.weighted_unifrac_nonsmoking <- ordinate(phyloseq_object_nonsmoking, method="PCoA", distance="unifrac", weighted=TRUE)
+gg_pcoa_wunifrac_smoking_LDL <- plot_ordination(phyloseq_object_smoking, ord.weighted_unifrac_smoking, color = "LDL_category") +
+  labs(col="LDL category") + stat_ellipse(type = "norm")#smoking-LDL
+gg_pcoa_wunifrac_nonsmoking_LDL <- plot_ordination(phyloseq_object_final, ord.weighted_unifrac_nonsmoking, color = "LDL_category") +
+  labs(col="LDL category") + stat_ellipse(type = "norm")#nonsmoking-LDL
+
+gg_pcoa_wunifrac_smoking_LDL
+gg_pcoa_wunifrac_nonsmoking_LDL
+### Save plots ###
+setwd("/Users/saman/Desktop/micb475-project2/pcoa_plots/beta_diversity")
+ggsave("plot_pcoa_wunifrac_smoking_LDL.png", gg_pcoa_wunifrac_smoking_LDL, height=2, width=5)
+ggsave("plot_pcoa_wunifrac_nonsmoking_LDL.png", gg_pcoa_wunifrac_nonsmoking_LDL, height=2, width=5)
+
+#### Oct 26, 2023 - SKA ####
+#Making a new column in the metadata to combined fibre and smoking
+sample_data(phyloseq_object_final)[[40]] = paste(sample_data(phyloseq_object_final)[[32]],sample_data(phyloseq_object_final)[[38]])
+#Making a new column in the metadata to combined LDL and smoking
+sample_data(phyloseq_object_final)[[41]] = paste(sample_data(phyloseq_object_final)[[32]],sample_data(phyloseq_object_final)[[37]])
 
 ### PCoA plot ###
 # weighted unifrac
