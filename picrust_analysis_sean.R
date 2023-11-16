@@ -115,6 +115,21 @@ pathway_pca(abundance = abundance_data_nonsmoking %>% column_to_rownames("pathwa
 smoking_res = DEseq2_function(abundance_data_smoking, metadata_smoking)
 View(smoking_res)
 
+smoking_res$feature = rownames(smoking_res)
+
+smoking_res_desc = inner_join(smoking_res, metacyc_daa_annotated_results_df_smoking, by = "feature")
+smoking_res_desc = smoking_res_desc[, -c(8:14)]
+
+smoking_res_desc_sig = smoking_res_desc %>%
+  filter(pvalue <0.05)
+
+smoking_res_desc_sig <- smoking_res_desc_sig[order(smoking_res_desc_sig$log2FoldChange),]
+ggplot(data = smoking_res_desc_sig, aes(x= log2FoldChange,y=reorder(description, -sort(as.numeric(log2FoldChange))), fill = pvalue))+
+  geom_col() +
+  theme_bw()+
+  scale_fill_gradient(low = "yellow", high = "red", na.value = NA)
+
+
 nonsmoking_res = DEseq2_function(abundance_data_nonsmoking, metadata_nonsmoking)
 View(nonsmoking_res)
 
