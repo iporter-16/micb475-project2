@@ -9,14 +9,73 @@ library(DESeq2)
 #load phyloseq data 
 load("phyloseq_object_final.RData") #do phyloseq final 
 
+
+#filter to smoking or non smoking 
+
+phylo_smoking = subset_samples(phyloseq_object_final, smoker == "Yes")
+
+
+
+################################################################ CHRIS ADDED
+taxa_info = as.data.frame(tax_table(phylo_smoking))
+taxa_info$ASV = rownames(taxa_info)
+
+################################################################
 #add one to reads 
-phyloseq_object_final_plus1 <- transform_sample_counts(phyloseq_object_final, function(x) x+1)
+phyloseq_object_final_plus1 <- transform_sample_counts(phylo_smoking, function(x) x+1)
 phyloseq_object_final_deseq <- phyloseq_to_deseq2(phyloseq_object_final_plus1, ~LDL_category) #what category? 
 phyloseq_final <- DESeq(phyloseq_object_final_deseq)
 
 # Make sure that the Healthy group is your reference group
 res <- results(phyloseq_final, tidy=TRUE)
+
+
+
+
+#################################################################################### CHRIS ADDED
+#Change first column name from "row" to "ASV" beacuse thats what I did on line 18
+colnames(res)[1] = "ASV"
 View(res)
+
+#Merge taxa information with "res" 
+res_with_taxa = inner_join(taxa_info,res, by = "ASV" )
+
+#take significant hits
+res_sig = res_with_taxa %>%
+  filter( padj<0.01 & abs(log2FoldChange)>2)
+
+#Order by log2FC
+res_sig <- res_sig[order(res_sig$log2FoldChange),]
+#Make the plot
+ggplot(data = res_sig, aes(y = reorder(Genus, -(as.numeric(log2FoldChange))), x = log2FoldChange, fill = pvalue))+
+  geom_col()
+
+#Function to combined Pvalues
+combine_pvalues = function(p){
+  return(1-pchisq(-2*sum(log(p),na.rm=T),2*sum(!is.na(p))))
+}
+
+#Merging the data for rows that have the same genus. Need to take the average for log2FC and combined the Pvalues
+res_genus_combined = res_sig %>%
+  group_by(Genus) %>%
+  summarize(log2FoldChange_avg = mean(log2FoldChange), pvalues =  combine_pvalues(pvalue))
+#Remove NAs
+res_genus_combined = na.omit(res_genus_combined)
+  
+
+
+
+res_genus_combined <- res_genus_combined[order(res_genus_combined$log2FoldChange_avg),]
+sighits = ggplot(data = res_genus_combined, aes(x= log2FoldChange_avg,y=reorder(Genus, -(as.numeric(log2FoldChange_avg))), fill = pvalues))+
+  geom_bar(stat = "identity") +
+  theme_bw()+
+  scale_fill_gradient(low = "yellow", high = "red", na.value = NA)
+
+ggsave("smoking_LDL_phyloseq_DeSeq.png", sighits)
+
+##########################################################################################
+
+
 
 ## Volcano plot: effect size VS significance
 ggplot(res) + #show number genes increasing/decreasing abundance compared to no group
@@ -31,32 +90,33 @@ vol_plot
 
 ggsave(filename="vol_plot.png",vol_plot)
 
-# Create bar plot
-# To get table of results
-sigASVs <- res %>% 
-  filter(padj<0.01 & abs(log2FoldChange)>2) %>%
-  dplyr::rename(ASV=row)
 
-# Get a vector of ASV names
-sigASVs_vec <- sigASVs %>%
-  pull(ASV)
 
-# Prune phyloseq file
-phyloseq_filt <- prune_taxa(sigASVs_vec,phyloseq_object_final)
-# Add taxonomy onto DESeq results table
-merged_results <- tax_table(phyloseq_filt) %>% as.data.frame() %>%
-  rownames_to_column(var="ASV") %>%
-  right_join(sigASVs) %>%
-  arrange(log2FoldChange) %>%
-  mutate(Genus = make.unique(Genus)) %>%
-  mutate(Genus = factor(Genus, levels=unique(Genus)))
 
-# Make DESeq plot
-first_DESeq <- (ggplot(merged_results) +
-                  geom_bar(aes(x=Genus, y=log2FoldChange), stat="identity")+
-                  geom_errorbar(aes(x=Genus, ymin=log2FoldChange-lfcSE, ymax=log2FoldChange+lfcSE)) +
-                  theme(axis.text.x = element_text(angle=90, hjust=1, vjust=0.5)))
-first_DESeq
-# Make sure that you have a line that saves the bar plot as a png and this file is present within your project folder
 
-ggsave("phyloseq_DeSeq.png", first_DESeq)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
