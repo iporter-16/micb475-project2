@@ -124,7 +124,7 @@ smoking_res_desc_sig = smoking_res_desc %>%
   filter(pvalue <0.05)
 
 smoking_res_desc_sig <- smoking_res_desc_sig[order(smoking_res_desc_sig$log2FoldChange),]
-ggplot(data = smoking_res_desc_sig, aes(x= log2FoldChange,y=reorder(description, -sort(as.numeric(log2FoldChange))), fill = pvalue))+
+ggplot(data = smoking_res_desc_sig, aes(x= log2FoldChange,y=reorder(description, -(as.numeric(log2FoldChange))), fill = pvalue))+
   geom_col() +
   theme_bw()+
   scale_fill_gradient(low = "yellow", high = "red", na.value = NA)
