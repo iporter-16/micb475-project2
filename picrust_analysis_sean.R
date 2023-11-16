@@ -115,24 +115,40 @@ pathway_pca(abundance = abundance_data_nonsmoking %>% column_to_rownames("pathwa
 smoking_res = DEseq2_function(abundance_data_smoking, metadata_smoking)
 View(smoking_res)
 
+nonsmoking_res = DEseq2_function(abundance_data_nonsmoking, metadata_nonsmoking)
+View(nonsmoking_res)
+
+#Creating column for the row names
 smoking_res$feature = rownames(smoking_res)
 
+nonsmoking_res$feature = rownames(nonsmoking_res)
+
+#Joining description
 smoking_res_desc = inner_join(smoking_res, metacyc_daa_annotated_results_df_smoking, by = "feature")
 smoking_res_desc = smoking_res_desc[, -c(8:14)]
 
+nonsmoking_res_desc = inner_join(nonsmoking_res, metacyc_daa_annotated_results_df_nonsmoking, by = "feature")
+nonsmoking_res_desc = nonsmoking_res_desc[, -c(8:14)]
+
+#Filter p-value
 smoking_res_desc_sig = smoking_res_desc %>%
   filter(pvalue <0.05)
 
+nonsmoking_res_desc_sig = nonsmoking_res_desc %>%
+  filter(pvalue <0.05)
+
+#Making plot
 smoking_res_desc_sig <- smoking_res_desc_sig[order(smoking_res_desc_sig$log2FoldChange),]
 ggplot(data = smoking_res_desc_sig, aes(x= log2FoldChange,y=reorder(description, -(as.numeric(log2FoldChange))), fill = pvalue))+
   geom_col() +
   theme_bw()+
   scale_fill_gradient(low = "yellow", high = "red", na.value = NA)
 
-
-nonsmoking_res = DEseq2_function(abundance_data_nonsmoking, metadata_nonsmoking)
-View(nonsmoking_res)
-
+nonsmoking_res_desc_sig <- nonsmoking_res_desc_sig[order(nonsmoking_res_desc_sig$log2FoldChange),]
+ggplot(data = nonsmoking_res_desc_sig, aes(x= log2FoldChange,y=reorder(description, -(as.numeric(log2FoldChange))), fill = pvalue))+
+  geom_col() +
+  theme_bw()+
+  scale_fill_gradient(low = "yellow", high = "red", na.value = NA)
 
 
 
