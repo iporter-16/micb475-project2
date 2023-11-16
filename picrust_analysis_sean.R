@@ -125,10 +125,10 @@ nonsmoking_res$feature = rownames(nonsmoking_res)
 
 #Joining description
 smoking_res_desc = inner_join(smoking_res, metacyc_daa_annotated_results_df_smoking, by = "feature")
-smoking_res_desc = smoking_res_desc[, -c(8:14)]
+smoking_res_desc = smoking_res_desc[, -c(8:13)]
 
 nonsmoking_res_desc = inner_join(nonsmoking_res, metacyc_daa_annotated_results_df_nonsmoking, by = "feature")
-nonsmoking_res_desc = nonsmoking_res_desc[, -c(8:14)]
+nonsmoking_res_desc = nonsmoking_res_desc[, -c(8:13)]
 
 #Filter p-value
 smoking_res_desc_sig = smoking_res_desc %>%
@@ -140,15 +140,17 @@ nonsmoking_res_desc_sig = nonsmoking_res_desc %>%
 #Making plot
 smoking_res_desc_sig <- smoking_res_desc_sig[order(smoking_res_desc_sig$log2FoldChange),]
 ggplot(data = smoking_res_desc_sig, aes(x= log2FoldChange,y=reorder(description, -(as.numeric(log2FoldChange))), fill = pvalue))+
-  geom_col() +
+  geom_bar(stat = "identity") +
   theme_bw()+
-  scale_fill_gradient(low = "yellow", high = "red", na.value = NA)
+  scale_fill_gradient(low = "yellow", high = "red", na.value = NA)+
+  xlim(-2.5,1)
 
 nonsmoking_res_desc_sig <- nonsmoking_res_desc_sig[order(nonsmoking_res_desc_sig$log2FoldChange),]
 ggplot(data = nonsmoking_res_desc_sig, aes(x= log2FoldChange,y=reorder(description, -(as.numeric(log2FoldChange))), fill = pvalue))+
-  geom_col() +
+  geom_bar(stat = "identity") +
   theme_bw()+
-  scale_fill_gradient(low = "yellow", high = "red", na.value = NA)
+  scale_fill_gradient(low = "yellow", high = "red", na.value = NA)+
+  xlim(-2.5,1)
 
 
 
