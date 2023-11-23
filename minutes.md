@@ -10,10 +10,11 @@ Organised by date, descending.
 
 - Fig1 Alpha diversity: present observed and shannon in 2-panel figure (LDL). Relabel to be specific about groups.
 - Fig2 Beta diversity: present smoking + nonsmoking in 2-panel figure (LDL)
-- Fig3 PCA plots from picrust analysis
-- Fig4 Picrust barplots and heatmaps in 4-panel figure
-- Fig5 Volcano and DESeq bar plot for smokers
-- Supplementals: fibre diversity plots, volcano plot (nonsmokers sig results)
+- Fig3 Picrust barplots and heatmaps in 4-panel figure
+- Fig4 Volcano and DESeq bar plot for smokers
+- Supp1: fibre diversity plots,
+- Supp2: PCA plots from picrust analysis
+- Supp3: volcano plot (nonsmokers sig results)
 
 Can't make huge claims/suggestions, only specifics.
 
