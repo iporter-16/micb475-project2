@@ -21,6 +21,8 @@ Takeaway: smokers are more susceptible and volatile to differences in LDL, shown
 
 Mention that there are two points in the nonsmokers volcano plots – possible NA, but go back and BLAST the sequence to link it to something.
 
+**Presentation:** stick to picrust barplots and significance figures. Present a clear takeaway (smokers need to watch their LDL!)
+
 
 ## Nov 9
 | Agenda item                                                                        	| Conclusion 	|
