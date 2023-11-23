@@ -6,6 +6,12 @@ Organised by date, descending.
 
 [Oct 2](#oct-2) ; [Oct 5](#oct-5) ; [Oct 12](#oct-12) ; [Oct 19](#oct-19) ; [Oct 26](#oct-26) ; [Nov 2](#nov-2) ; [Nov 9](#nov-9)
 
+## Nov 23
+
+- Alpha diversity: present observed and shannon in 4-panel figure (LDL + fibre). Relabel to be specific about groups.
+- Beta diversity: present smoking + nonsmoking in 4-panel figure (LDL + fibre)
+
+
 ## Nov 9
 | Agenda item                                                                        	| Conclusion 	|
 |-----------------------------------------	|---------	|
