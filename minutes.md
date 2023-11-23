@@ -24,6 +24,10 @@ Mention that there are two points in the nonsmokers volcano plots – possible N
 
 **Presentation:** stick to picrust barplots and significance figures. Present a clear takeaway (smokers need to watch their LDL!)
 
+**Goal for next week:** have slides! And go through the bacteria in Fig4, connect to pathways in Fig3
+
+**Goal for Dec 7th:** send Chris a manuscript draft.
+
 
 ## Nov 9
 | Agenda item                                                                        	| Conclusion 	|
