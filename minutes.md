@@ -8,8 +8,18 @@ Organised by date, descending.
 
 ## Nov 23
 
-- Alpha diversity: present observed and shannon in 4-panel figure (LDL + fibre). Relabel to be specific about groups.
-- Beta diversity: present smoking + nonsmoking in 4-panel figure (LDL + fibre)
+- Fig1 Alpha diversity: present observed and shannon in 2-panel figure (LDL). Relabel to be specific about groups.
+- Fig2 Beta diversity: present smoking + nonsmoking in 2-panel figure (LDL)
+- Fig3 PCA plots from picrust analysis
+- Fig4 Picrust barplots and heatmaps in 4-panel figure
+- Fig5 Volcano and DESeq bar plot for smokers
+- Supplementals: fibre diversity plots, volcano plot (nonsmokers sig results)
+
+Can't make huge claims/suggestions, only specifics.
+
+Takeaway: smokers are more susceptible and volatile to differences in LDL, shown both in picrust and deseq plots.
+
+Mention that there are two points in the nonsmokers volcano plots – possible NA, but go back and BLAST the sequence to link it to something.
 
 
 ## Nov 9
