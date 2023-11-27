@@ -1,4 +1,6 @@
 ##### Nov 14, 2023 - AW ####
+##### Nov 27, 2023 - AW - updated to add labels####
+
 #DESeq module - relative abundance of LDL genus 
 
 #load libraries 
@@ -61,15 +63,17 @@ res_genus_combined = res_sig %>%
   summarize(log2FoldChange_avg = mean(log2FoldChange), pvalues =  combine_pvalues(pvalue))
 #Remove NAs
 res_genus_combined = na.omit(res_genus_combined)
-  
 
+#Remove g__  
+res_genus_combined$Genus <- gsub("g__", "", res_genus_combined$Genus)
 
 
 res_genus_combined <- res_genus_combined[order(res_genus_combined$log2FoldChange_avg),]
 sighits = ggplot(data = res_genus_combined, aes(x= log2FoldChange_avg,y=reorder(Genus, -(as.numeric(log2FoldChange_avg))), fill = pvalues))+
   geom_bar(stat = "identity") +
   theme_bw()+
-  scale_fill_gradient(low = "yellow", high = "red", na.value = NA)
+  scale_fill_gradient(low = "yellow", high = "red", na.value = NA) + 
+  labs(x = "Average Log2 Fold Change", y = "Genus")
 
 ggsave("smoking_LDL_phyloseq_DeSeq.png", sighits)
 
@@ -85,7 +89,8 @@ ggplot(res) + #show number genes increasing/decreasing abundance compared to no 
 vol_plot <- res %>%
   mutate(significant = padj<0.01 & abs(log2FoldChange)>2) %>% #new column in results table 
   ggplot() +
-  geom_point(aes(x=log2FoldChange, y=-log10(padj), col=significant))
+  geom_point(aes(x=log2FoldChange, y=-log10(padj), col=significant)) + 
+  labs(x = "Log2 Fold Change", y = "-Log10 (padj)")
 vol_plot
 
 ggsave(filename="vol_plot.png",vol_plot)
