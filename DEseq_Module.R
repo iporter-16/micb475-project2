@@ -1,4 +1,5 @@
 ##### Nov 14, 2023 - AW ####
+
 #DESeq module - relative abundance of LDL genus 
 
 #load libraries 
@@ -11,6 +12,21 @@ load("phyloseq_object_final.RData") #do phyloseq final
 
 #add one to reads 
 phyloseq_object_final_plus1 <- transform_sample_counts(phyloseq_object_final, function(x) x+1)
+#sep into smoker categories like in picrust
+
+#isolate smoking and nonsmoking from abundance data and metadata
+phyloseq_plus1_smoking <- filter(phyloseq_object_final_plus1, ~smoker=="Yes")
+phyloseq_plus1_nonsmoking <- filter(metadata, metadata$smoker=="No")
+
+abundance_data_smoking <- select(abundance_data, metadata_smoking$`#SampleID`)
+abundance_data_smoking$pathway = abundance_data$pathway
+abundance_data_smoking <- abundance_data_smoking %>% select(pathway, everything())
+
+abundance_data_nonsmoking <- select(abundance_data, metadata_nonsmoking$`#SampleID`)
+abundance_data_nonsmoking$pathway = abundance_data$pathway
+abundance_data_nonsmoking <- abundance_data_nonsmoking %>% select(pathway, everything())
+
+#make DESeq object
 phyloseq_object_final_deseq <- phyloseq_to_deseq2(phyloseq_object_final_plus1, ~LDL_category) #what category? 
 phyloseq_final <- DESeq(phyloseq_object_final_deseq)
 
