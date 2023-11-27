@@ -103,9 +103,9 @@ ggplot(binary_data, aes(x = Formula, y = Feature, fill = value)) + geom_tile() +
 ### Analysis + visualisation : SMOKING HIGH/LOW LDL
 ```{r}
 results <- c(daa_results_df_LinDA,daa_results_df_edgeR,daa_results_df_deseq)
-sig_LinDA <- daa_results_df_LinDA_nonsmoking%>% filter(p_values < 0.05)
-sig_edgeR <- daa_results_df_edgeR_nonsmoking%>% filter(p_values < 0.05)
-sig_deseq <- daa_results_df_deseq_nonsmoking%>% filter(p_values < 0.05)
+sig_LinDA <- daa_results_df_LinDA_nonsmoking%>% filter(p_values < 0.01)
+sig_edgeR <- daa_results_df_edgeR_nonsmoking%>% filter(p_values < 0.01)
+sig_deseq <- daa_results_df_deseq_nonsmoking%>% filter(p_values < 0.01)
 sig_results <- rbind(sig_LinDA,sig_edgeR,sig_deseq)
 unique_features <- unique(sig_results$feature)
 table <- matrix(data=0,nrow=length(unique_features),ncol=3)
