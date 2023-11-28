@@ -45,9 +45,9 @@ daa_results_list <- lapply(methods, function(method) {
   pathway_daa(abundance = abundance_data %>% column_to_rownames("pathway"), metadata = metadata, group = "smoker", daa_method = method)
 }) # smoker only
 # daa_results_list_smoking_fibre <- lapply(methods, function(method) {pathway_daa(abundance = abundance_data_smoking %>% column_to_rownames("pathway"), metadata = metadata, group = "fibre_category", daa_method = method)
-}) # smoking-fibre
+# }) # smoking-fibre
 # daa_results_list_nonsmoking_fibre <- lapply(methods, function(method) {pathway_daa(abundance = abundance_data_nonsmoking %>% column_to_rownames("pathway"), metadata = metadata, group = "fibre_category", daa_method = method)
-}) # nonsmoking-fibre
+# }) # nonsmoking-fibre
 daa_results_list_smoking_LDL <- lapply(methods, function(method) {pathway_daa(abundance = abundance_data_smoking %>% column_to_rownames("pathway"), metadata = metadata, group = "LDL_category", daa_method = method)
 }) # smoking-LDL
 daa_results_list_nonsmoking_LDL <- lapply(methods, function(method) {pathway_daa(abundance = abundance_data_nonsmoking %>% column_to_rownames("pathway"), metadata = metadata, group = "LDL_category", daa_method = method)
