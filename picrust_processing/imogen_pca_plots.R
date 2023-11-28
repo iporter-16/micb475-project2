@@ -46,8 +46,16 @@ PCA_nonsmok_LDL <- pathway_pca(abundance = filtered_LDL_nonsmok %>% column_to_ro
                                metadata = metadata_nonsmoking, group = "LDL_category")+ggtitle("    PCA plot for nonsmokers")
 PCA_smok_LDL <- pathway_pca(abundance = filtered_LDL_smok %>% column_to_rownames("pathway"), 
                             metadata = metadata_smoking, group = "LDL_category")+ggtitle("PCA plot for smokers")
+# additional plots for smoker category only and LDL category only among all participants. SKA - Nov 7, 2023 #
+pca_plot_smoker <- pathway_pca(abundance = abundance_data %>% column_to_rownames("pathway"), metadata = metadata, group = "smoker")+ggtitle("PCA plot comparing smoking in all participants")
+# pca_plot_smoker
+pca_plot_LDL <- pathway_pca(abundance = abundance_data %>% column_to_rownames("pathway"), metadata = metadata, group = "LDL_category")+ggtitle("PCA plot comparing LDL in all participants")
+# pca_plot_LDL
 
 ### Save plots. Only change wd to save plots! Keep commented ut
 # setwd("/Users/porte16049/Desktop/MICB475/micb475-project2/pcoa_plots")
 # ggsave("pca_all_LDL.png",PCA_total,scale=1)
 # ggsave("pca_smokers_LDL.png",PCA_smok_LDL,scale=1)
+# setwd("/Users/saman/Desktop/micb475-project2/pcoa_plots")
+# ggsave("pca_smoker_all.png", pca_plot_smoker, scale=1)
+# ggsave("pca_LDL_all.png", pca_plot_LDL, scale=1)

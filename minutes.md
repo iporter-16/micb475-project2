@@ -4,7 +4,54 @@ Organised by date, descending.
 
 **Proposal** https://docs.google.com/document/d/1oZlL-Ai-Lp_nA-4W0G4WqwVJkbWYVR4hhuk1EpJy-nc/edit
 
-[Oct 2](#oct-2) ; [Oct 5](#oct-5) ; [Oct 12](#oct-12) ; [Oct 19](#oct-19) ; [Oct 26](#oct-26)
+[Oct 2](#oct-2) ; [Oct 5](#oct-5) ; [Oct 12](#oct-12) ; [Oct 19](#oct-19) ; [Oct 26](#oct-26) ; [Nov 2](#nov-2) ; [Nov 9](#nov-9)
+
+## Nov 23
+
+- Fig1 Alpha diversity: present observed and shannon in 2-panel figure (LDL). Relabel to be specific about groups.
+- Fig2 Beta diversity: present smoking + nonsmoking in 2-panel figure (LDL)
+- Fig3 Picrust barplots and heatmaps in 4-panel figure
+- Fig4 Volcano and DESeq bar plot for smokers
+- Supp1: fibre diversity plots,
+- Supp2: PCA plots from picrust analysis
+- Supp3: volcano plot (nonsmokers sig results)
+
+Can't make huge claims/suggestions, only specifics.
+
+Takeaway: smokers are more susceptible and volatile to differences in LDL, shown both in picrust and deseq plots.
+
+Mention that there are two points in the nonsmokers volcano plots – possible NA, but go back and BLAST the sequence to link it to something.
+
+**Presentation:** stick to picrust barplots and significance figures. Present a clear takeaway (smokers need to watch their LDL!)
+
+**Goal for next week:** have slides! And go through the bacteria in Fig4, connect to pathways in Fig3
+
+**Goal for Dec 7th:** send Chris a manuscript draft.
+
+
+## Nov 9
+| Agenda item                                                                        	| Conclusion 	|
+|-----------------------------------------	|---------	|
+| Alpha diversity: no significant data is shown between the groups                        |  |
+| Distribute tasks for manuscript writing?                        |  |
+| Analyses Comparisons: how do we get the top 10 pathways? |  |  
+
+### Next steps:
+
+Tiffany + Alice –> **DESeq analysis** to figure out if there are a few specific genus / species that are affected in abundance, resulting in changes in metabolic information during picrust. Run on taxonomic-level table (phyloseq object w/OTU table + taxonomy file, prior to picrust analyses), then lit review for metabolic functions to see if it aligns with metabolic results
+
+- Test smokers high/low LDL, check which bacteria are upregulated.
+- Hope to see less difference between high/low LDL in nonsmokers.
+
+Sean + Sam -> Perform using **Chris's DESeq function (will be emailed)** on smoker/nonsmoker high/low LDL groups.
+
+Start manuscript drafting!
+
+- Imogen –> Introduction
+- Tiffany + Sam –> Figure 1 (diversity)
+- Sam –> Methods
+- Sean + Alice –> Discussion later...
+
 
 ## Nov 2
 
@@ -15,6 +62,7 @@ Organised by date, descending.
 - **Imogen & ?:** [Lit review](https://docs.google.com/document/d/1gAc4GGjX9uzj-aR70NqgcJvRnQcLFoWcT7jLYDcZJVs/edit) on results: pathways up/down regulated in LDL samples
 - **Imogen:**  Lit review on results: pathways needed to be excluded in PCA plots _(done! dead end -i)_
 - Compare top 10 results between LinDA, deseq, aldex2, edgeR
+- **Tiffany:** [Alpha diversity signifiance comparison](https://docs.google.com/presentation/d/1pIplkOJ19TjLork48qhRfuhgrWncWUlC/edit?usp=sharing&ouid=103207874254987114452&rtpof=true&sd=true)
 
 ## Oct 26
 
