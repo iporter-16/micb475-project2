@@ -55,7 +55,8 @@ daa_results_df_nonsmoking_LDL <- pathway_daa(abundance = abundance_data_nonsmoki
                                          group = "LDL_category", daa_method = "LinDA", select = NULL, reference = NULL)
 # Generate pathway heatmap for LDL groups
 feature_with_p_0.05_smok_LDL <- daa_results_df_smoking_LDL %>% filter(p_values < 0.05) 
-heat_smok_LDL <- pathway_heatmap(abundance = filtered_test %>% filter(pathway %in% feature_with_p_0.05_smok_LDL$feature) %>% 
+heat_smok_LDL <- pathway_heatmap(abundance = abundance_data_smoking %>% filter(rowSums(select(., -pathway) != 0) > 0) %>% 
+                  filter(pathway %in% feature_with_p_0.05_smok_LDL$feature) %>% 
                   column_to_rownames("pathway"), metadata = metadata, group = "LDL_category") + 
                   ggtitle("Significant differential expression in smokers with high/low LDL")
 
@@ -65,12 +66,12 @@ heat_nonsmok_LDL <- pathway_heatmap(abundance = abundance_data_nonsmoking %>% fi
                   ggtitle("Significant differential expression in nonsmokers with high/low LDL")
 
 #Saving heatmaps
-setwd("/Users/porte16049/Desktop/MICB475/micb475-project2/heatmaps")
-ggsave("heatmap_LDL_nonsmok_update.png",heat_nonsmok_LDL,scale=2)
-ggsave("heatmap_LDL_smok_update.png",heat_smok_LDL,scale=2)
+# setwd("/Users/porte16049/Desktop/MICB475/micb475-project2/heatmaps")
+# ggsave("heatmap_LDL_nonsmok_update.png",heat_nonsmok_LDL,scale=2)
+# ggsave("heatmap_LDL_smok_update.png",heat_smok_LDL,scale=2)
 
 setwd("/Users/porte16049/Desktop/MICB475/micb475-project2")
 ### Pulling interesting data from the LDL smoking heatplot
-interesting_pathways <- abundance_data_smoking %>% filter(pathway %in% feature_with_p_0.05_smok_LDL$feature)
+interesting_pathways <- abundance_data_smoking %>% filter(rowSums(select(., -pathway) != 0) > 0) %>% filter(pathway %in% feature_with_p_0.05_smok_LDL$feature)
 all_interesting <- data.frame(feature=c(interesting_pathways$pathway))
 all_interesting <- pathway_annotation(pathway = "MetaCyc", daa_results_df = all_interesting, ko_to_kegg = FALSE)
