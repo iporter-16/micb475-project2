@@ -97,13 +97,30 @@ ggsave(filename="vol_plot.png",vol_plot)
 
 
 
+##### Dec 01, 2023 - AW - add volcano point labels ####
 
 
+if (!requireNamespace('BiocManager', quietly = TRUE))
+  install.packages('BiocManager')
 
+BiocManager::install('EnhancedVolcano')
 
+library(EnhancedVolcano)
 
+#Annotate the Ensembl gene IDs to gene symbols
+volcano_plot <- EnhancedVolcano(
+  res_genus_combined,
+  lab = res_genus_combined$Genus,
+  x = 'log2FoldChange_avg',
+  y = 'pvalues',
+  xlim = c(-5, 5), # Adjust xlim based on your data distribution
+  title = 'EnhancedVolcano Plot',
+  pCutoff = 0.05, # Adjust p-value cutoff
+  FCcutoff = 2,   # Adjust log2 fold change cutoff
+  pointSize = 3   # Adjust point size
+)
 
-
+print(volcano_plot)
 
 
 
