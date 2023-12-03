@@ -130,26 +130,26 @@ res_with_taxa_noNA <- res_with_taxa %>% filter(!is.na(res_with_taxa$padj))
 res_with_taxa_noNA <-  dplyr::mutate(res_with_taxa_noNA, Genus= if_else(ASV %in% res_sig$ASV, gsub("g__","",Genus),Genus))
 res_sig$Genus <- gsub("g__", "", res_sig$Genus)
 
-EnhancedVolcano(
+volcano_test <- EnhancedVolcano(
   res_with_taxa_noNA,
   lab = res_with_taxa_noNA$Genus, selectLab = labels,
   x = 'log2FoldChange',
   y = 'padj',
   xlim = c(-5, 5), # Adjust xlim based on your data distribution
-  ylim = c(-1, 15),
-  title = paste('EnhancedVolcano Plot - ',labels[l]),
+  ylim = c(-1, 11),
+  title = paste('EnhancedVolcano Plot'),
   pCutoff = 0.05, # Adjust p-value cutoff
   FCcutoff = 2,   # Adjust log2 fold change cutoff
   pointSize = 2,   # Adjust point size
   labCol = 'black',
   labFace = 'bold',
-  # boxedLabels = TRUE,
+  boxedLabels = TRUE,
   drawConnectors = TRUE,
   widthConnectors = 1.0,
   colConnectors = 'black',
   max.overlaps=50,
   labSize = 4)
-
+ggsave("enhancedvolcano_boxed.png",plot=volcano_test,)
 
 
 
