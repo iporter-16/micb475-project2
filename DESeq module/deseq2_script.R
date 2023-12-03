@@ -124,7 +124,8 @@ volcano_plot <- EnhancedVolcano(
 )
 print(volcano_plot)
 
-#Imogen tries fixing the labelling issue...
+#Issue is that many ASVs are within that genus. As a solution, only fix the genus names (remove g__) 
+#of the significant ASVs so that they are the only ones labelled. IP 03/12
 res_with_taxa_noNA <- res_with_taxa %>% filter(!is.na(res_with_taxa$padj))
 res_with_taxa_noNA <-  dplyr::mutate(res_with_taxa_noNA, Genus= if_else(ASV %in% res_sig$ASV, gsub("g__","",Genus),Genus))
 res_sig$Genus <- gsub("g__", "", res_sig$Genus)
@@ -142,12 +143,12 @@ EnhancedVolcano(
   pointSize = 2,   # Adjust point size
   labCol = 'black',
   labFace = 'bold',
-  boxedLabels = TRUE,
+  # boxedLabels = TRUE,
   drawConnectors = TRUE,
   widthConnectors = 1.0,
   colConnectors = 'black',
   max.overlaps=50,
-  labSize = 2)
+  labSize = 4)
 
 
 
