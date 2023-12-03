@@ -119,12 +119,35 @@ volcano_plot <- EnhancedVolcano(
   ylim = c(-1, 15),
   title = 'EnhancedVolcano Plot',
   pCutoff = 0.05, # Adjust p-value cutoff
-  FCcutoff = 1,   # Adjust log2 fold change cutoff
+  FCcutoff = 2,   # Adjust log2 fold change cutoff
   pointSize = 3   # Adjust point size
 )
-
 print(volcano_plot)
 
+#Imogen tries fixing the labelling issue...
+res_with_taxa_noNA <- res_with_taxa %>% filter(!is.na(res_with_taxa$padj))
+res_with_taxa_noNA <-  dplyr::mutate(res_with_taxa_noNA, Genus= if_else(ASV %in% res_sig$ASV, gsub("g__","",Genus),Genus))
+res_sig$Genus <- gsub("g__", "", res_sig$Genus)
+
+EnhancedVolcano(
+  res_with_taxa_noNA,
+  lab = res_with_taxa_noNA$Genus, selectLab = labels,
+  x = 'log2FoldChange',
+  y = 'padj',
+  xlim = c(-5, 5), # Adjust xlim based on your data distribution
+  ylim = c(-1, 15),
+  title = paste('EnhancedVolcano Plot - ',labels[l]),
+  pCutoff = 0.05, # Adjust p-value cutoff
+  FCcutoff = 2,   # Adjust log2 fold change cutoff
+  pointSize = 2,   # Adjust point size
+  labCol = 'black',
+  labFace = 'bold',
+  boxedLabels = TRUE,
+  drawConnectors = TRUE,
+  widthConnectors = 1.0,
+  colConnectors = 'black',
+  max.overlaps=50,
+  labSize = 2)
 
 
 
