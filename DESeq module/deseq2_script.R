@@ -13,9 +13,7 @@ load("phyloseq_object_final.RData") #do phyloseq final
 
 
 #filter to smoking or non smoking 
-
 phylo_smoking = subset_samples(phyloseq_object_final, smoker == "Yes")
-
 
 
 ################################################################ CHRIS ADDED
@@ -30,8 +28,6 @@ phyloseq_final <- DESeq(phyloseq_object_final_deseq)
 
 # Make sure that the Healthy group is your reference group
 res <- results(phyloseq_final, tidy=TRUE)
-
-
 
 
 #################################################################################### CHRIS ADDED
@@ -80,7 +76,6 @@ ggsave("smoking_LDL_phyloseq_DeSeq.png", sighits)
 ##########################################################################################
 
 
-
 ## Volcano plot: effect size VS significance
 ggplot(res) + #show number genes increasing/decreasing abundance compared to no group
   geom_point(aes(x=log2FoldChange, y=-log10(padj))) #mising values due to NAs 
@@ -97,26 +92,34 @@ ggsave(filename="vol_plot.png",vol_plot)
 
 
 
-##### Dec 01, 2023 - AW - add volcano point labels ####
+##### Dec 01, 2023 - AW - add volcano point labels using EnhancedVolcano package ####
 
 
 if (!requireNamespace('BiocManager', quietly = TRUE))
   install.packages('BiocManager')
 
-BiocManager::install('EnhancedVolcano')
+# BiocManager::install('EnhancedVolcano')
 
 library(EnhancedVolcano)
 
 #Annotate the Ensembl gene IDs to gene symbols
+
+#IP changes: included all data, reduced log2foldchange to 1 in accordance with bar plots, 
+#fixed labels so they were the same throughout allowing genera of interest to be labelled
+res_with_taxa_noNA <- res_with_taxa %>% filter(!is.na(res_with_taxa$padj))
+res_with_taxa_noNA$Genus <- gsub("g__", "", res_with_taxa_noNA$Genus)
+labels <- res_genus_combined$Genus
+
 volcano_plot <- EnhancedVolcano(
-  res_genus_combined,
-  lab = res_genus_combined$Genus,
-  x = 'log2FoldChange_avg',
-  y = 'pvalues',
+  res_with_taxa_noNA,
+  lab = res_with_taxa_noNA$Genus, selectLab = labels,
+  x = 'log2FoldChange',
+  y = 'padj',
   xlim = c(-5, 5), # Adjust xlim based on your data distribution
+  ylim = c(-1, 15),
   title = 'EnhancedVolcano Plot',
   pCutoff = 0.05, # Adjust p-value cutoff
-  FCcutoff = 2,   # Adjust log2 fold change cutoff
+  FCcutoff = 1,   # Adjust log2 fold change cutoff
   pointSize = 3   # Adjust point size
 )
 
