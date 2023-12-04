@@ -17,7 +17,6 @@ load("phyloseq_object_final.RData") #do phyloseq final
 #filter to smoking or non smoking 
 phylo_smoking = subset_samples(phyloseq_object_final, smoker == "Yes")
 
-
 ################################################################ CHRIS ADDED
 taxa_info = as.data.frame(tax_table(phylo_smoking))
 taxa_info$ASV = rownames(taxa_info)
@@ -25,7 +24,11 @@ taxa_info$ASV = rownames(taxa_info)
 ################################################################
 #add one to reads 
 phyloseq_object_final_plus1 <- transform_sample_counts(phylo_smoking, function(x) x+1)
-phyloseq_object_final_deseq <- phyloseq_to_deseq2(phyloseq_object_final_plus1, ~LDL_category) #what category? 
+#phyloseq_object_final_deseq <- phyloseq_to_deseq2(phyloseq_object_final_plus1, ~LDL_category) #what category? 
+phyloseq_object_final_deseq <- phyloseq_to_deseq2(
+  phyloseq_object_final_plus1, 
+  ~ relevel(LDL_category, "low")
+) #make low LDL reference 
 phyloseq_final <- DESeq(phyloseq_object_final_deseq)
 
 # Make sure that the Healthy group is your reference group
@@ -65,7 +68,6 @@ res_genus_combined = na.omit(res_genus_combined)
 #Remove g__  
 res_genus_combined$Genus <- gsub("g__", "", res_genus_combined$Genus)
 
-
 res_genus_combined <- res_genus_combined[order(res_genus_combined$log2FoldChange_avg),]
 sighits = ggplot(data = res_genus_combined, aes(x= log2FoldChange_avg,y=reorder(Genus, -(as.numeric(log2FoldChange_avg))), fill = pvalues))+
   geom_bar(stat = "identity") +
@@ -82,14 +84,14 @@ ggplot(res) + #show number genes increasing/decreasing abundance compared to no 
   geom_point(aes(x=log2FoldChange, y=-log10(padj))) #mising values due to NAs 
 
 ## Make variable to color by whether it is significant + large change
-vol_plot <- res %>%
+vol_plot_smoking_LDL <- res %>%
   mutate(significant = padj<0.01 & abs(log2FoldChange)>2) %>% #new column in results table 
   ggplot() +
   geom_point(aes(x=log2FoldChange, y=-log10(padj), col=significant)) + 
   labs(x = "Log2 Fold Change", y = "-Log10 (padj)")
-vol_plot
+vol_plot_smoking_LDL
 
-ggsave(filename="vol_plot.png",vol_plot)
+ggsave(filename="vol_plot_smoking_LDL.png",vol_plot)
 
 ########################################################################################
 
@@ -131,6 +133,22 @@ labeled_volcano_plot_genus <- res_genus_combined %>%
   labs(x = "Average Log2 Fold Change", y = "-Log10 (pvalues)", title = "Genera Volcano Plot Smoking_LDL")
 
 print(labeled_volcano_plot_genus)
+##
+res_with_taxa <- res_with_taxa %>%
+  mutate(significant = pvalue < pcutoff & abs(log2FoldChange) > fccutoff)
+res_with_taxa$Genus <- gsub("g__", "", res_with_taxa$Genus)
+
+labeled_volcano_plot_taxa <- res_with_taxa %>%
+  ggplot(aes(x = log2FoldChange, y = -log10(pvalue), col = significant, label = ifelse(significant, Genus, ""))) +
+  geom_point(size = 2) +
+  geom_text_repel(
+    box.padding = 0.5, point.padding = 1,
+    segment.size = 0.2, segment.color = "grey50", force = 5,
+    max.overlaps = Inf
+  ) +
+  scale_color_manual(values = c("grey", "blue")) +  # Manually set colors for significant and non-significant points
+  labs(x = "Average Log2 Fold Change", y = "-Log10 (pvalues)", title = "Genera Volcano Plot Smoking_LDL")
+
 
 ########################################################################################
 
