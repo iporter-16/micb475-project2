@@ -152,6 +152,34 @@ volcano_test <- EnhancedVolcano(
 ggsave("enhancedvolcano_boxed.png",plot=volcano_test,)
 
 
+#for loop which produces a volcano plot for each genus within the list
+#labelling every dot for which the ASV is within that genus.
+#NOT for use within manuscript!
+res_with_taxa_noNA <-  dplyr::mutate(res_with_taxa_noNA, Genus= if_else(ASV %in% res_sig$ASV, gsub("g__","",Genus),Genus))
+res_with_taxa_noNA$Genus <- gsub("g__", "", res_with_taxa_noNA$Genus)
+for (l in 1:length(labels)) {
+  v <- EnhancedVolcano(
+  res_with_taxa_noNA,
+  lab = res_with_taxa_noNA$Genus, selectLab = labels[l],
+  x = 'log2FoldChange',
+  y = 'padj',
+  xlim = c(-5, 5), # Adjust xlim based on your data distribution
+  ylim = c(-1, 11),
+  title = paste('EnhancedVolcano Plot'," ",labels[l]),
+  pCutoff = 0.05, # Adjust p-value cutoff
+  FCcutoff = 2,   # Adjust log2 fold change cutoff
+  pointSize = 2,   # Adjust point size
+  labCol = 'black',
+  labFace = 'bold',
+  boxedLabels = TRUE,
+  drawConnectors = TRUE,
+  widthConnectors = 1.0,
+  colConnectors = 'black',
+  max.overlaps=50,
+  labSize = 4)
+  print(l)
+  print(v)
+}
 
 
 
