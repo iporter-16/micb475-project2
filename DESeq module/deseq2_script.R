@@ -1,7 +1,7 @@
 ##### Nov 14, 2023 - AW ####
 ##### Nov 27, 2023 - AW - updated to add labels####
 
-#DESeq module - relative abundance of LDL genus 
+#DESeq module - Relative abundance of LDL genus 
 
 #load libraries 
 library(tidyverse)
