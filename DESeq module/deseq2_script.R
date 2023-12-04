@@ -23,11 +23,21 @@ taxa_info$ASV = rownames(taxa_info)
 ################################################################
 #add one to reads 
 phyloseq_object_final_plus1 <- transform_sample_counts(phylo_smoking, function(x) x+1)
-phyloseq_object_final_deseq <- phyloseq_to_deseq2(phyloseq_object_final_plus1, ~LDL_category) #what category? 
+#phyloseq_object_final_deseq <- phyloseq_to_deseq2(phyloseq_object_final_plus1, ~LDL_category) #what category? 
+phyloseq_object_final_deseq <- phyloseq_to_deseq2(
+  phyloseq_object_final_plus1, 
+  ~ relevel(LDL_category, "low"))
 phyloseq_final <- DESeq(phyloseq_object_final_deseq)
 
 # Make sure that the Healthy group is your reference group
 res <- results(phyloseq_final, tidy=TRUE)
+
+#count ASVs significantly up/down reg in smokers 
+upregulated_count <- sum(res_sig$log2FoldChange > 0)
+downregulated_count <- sum(res_sig$log2FoldChange < 0)
+
+cat("Number of upregulated smoking ASVs:", upregulated_count, "\n")
+cat("Number of downregulated smoking ASVs:", downregulated_count, "\n")
 
 
 #################################################################################### CHRIS ADDED
