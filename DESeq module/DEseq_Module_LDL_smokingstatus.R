@@ -1,4 +1,5 @@
 ##### Nov 14, 2023 - AW ####
+#### Dec 03, 2023 - AW - make low LDL the reference group #### 
 #DESeq module - relative abundance of LDL genus 
 
 #load libraries 
@@ -87,6 +88,7 @@ vol_plot
 
 ggsave(filename="vol_plot_smokingLDL.png",vol_plot)
 
+###########################################################################
 
 ##### Nov 16, 2023 - AW ####
 #repeat for nonsmoking
@@ -95,7 +97,10 @@ taxa_info_nonsmoking = as.data.frame(tax_table(phylo_nonsmoking))
 taxa_info_nonsmoking$ASV = rownames(taxa_info)
 
 phyloseq_nonsmoke_plus1 <- transform_sample_counts(phylo_nonsmoking, function(x) x+1)
-phyloseq_nonsmoke_deseq <- phyloseq_to_deseq2(phyloseq_nonsmoke_plus1, ~LDL_category) #what category? 
+#phyloseq_nonsmoke_deseq <- phyloseq_to_deseq2(phyloseq_nonsmoke_plus1, ~LDL_category) #what category? 
+phyloseq_nonsmoke_deseq <- phyloseq_to_deseq2(
+  phyloseq_nonsmoke_plus1, 
+  ~ relevel(LDL_category, "low"))
 phyloseq_nonsmoke_final <- DESeq(phyloseq_nonsmoke_deseq)
 
 res_nonsmoke <- results(phyloseq_nonsmoke_final, tidy=TRUE)
@@ -127,7 +132,8 @@ res_nonsmoke_genus_combined <- res_nonsmoke_genus_combined[order(res_nonsmoke_ge
 sighits = ggplot(data = res_nonsmoke_genus_combined, aes(x= log2FoldChange_avg,y=reorder(Genus, -(as.numeric(log2FoldChange_avg))), fill = pvalues))+
   geom_bar(stat = "identity") +
   theme_bw()+
-  scale_fill_gradient(low = "yellow", high = "red", na.value = NA)
+  scale_fill_gradient(low = "yellow", high = "red", na.value = NA) + 
+  labs(x = "Average Log2 Fold Change", y = "Genus")
 
 ggsave("nonsmoking_LDL_phyloseq_DeSeq.png", sighits)
 
@@ -140,7 +146,8 @@ ggplot(res_nonsmoke) + #show number genes increasing/decreasing abundance compar
 vol_plot <- res_nonsmoke %>%
   mutate(significant = padj<0.01 & abs(log2FoldChange)>2) %>% #new column in results table 
   ggplot() +
-  geom_point(aes(x=log2FoldChange, y=-log10(padj), col=significant))
+  geom_point(aes(x=log2FoldChange, y=-log10(padj), col=significant)) + 
+  labs(x = "Log2 Fold Change", y = "-Log10 (padj)")
 vol_plot
 
 ggsave(filename="vol_plot_nonsmokingLDL.png",vol_plot)
