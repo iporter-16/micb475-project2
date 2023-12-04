@@ -47,6 +47,13 @@ res_with_taxa = inner_join(taxa_info,res, by = "ASV" )
 res_sig = res_with_taxa %>%
   filter( padj<0.01 & abs(log2FoldChange)>2)
 
+#count ASVs significantly up/down reg in smokers 
+upregulated_count <- sum(res_sig$log2FoldChange > 0)
+downregulated_count <- sum(res_sig$log2FoldChange < 0)
+
+cat("Number of upregulated smoking ASVs:", upregulated_count, "\n")
+cat("Number of downregulated smoking ASVs:", downregulated_count, "\n")
+
 #Order by log2FC
 res_sig <- res_sig[order(res_sig$log2FoldChange),]
 #Make the plot
@@ -80,7 +87,7 @@ ggsave("smoking_LDL_phyloseq_DeSeq.png", sighits)
 ##########################################################################################
 
 ## Volcano plot: effect size VS significance of ASVs 
-ggplot(res) + #show number genes increasing/decreasing abundance compared to no group
+ggplot(res) + #show ASVs increasing/decreasing abundance compared to low ldl group
   geom_point(aes(x=log2FoldChange, y=-log10(padj))) #mising values due to NAs 
 
 ## Make variable to color by whether it is significant + large change

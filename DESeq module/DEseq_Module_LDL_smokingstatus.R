@@ -113,6 +113,12 @@ res_nonsmoke_taxa = inner_join(taxa_info,res_nonsmoke, by = "ASV" )
 res_nonsmoke_sig = res_nonsmoke_taxa %>%
   filter( padj<0.01 & abs(log2FoldChange)>2)
 
+upregulated_count <- sum(res_nonsmoke_sig$log2FoldChange > 0)
+downregulated_count <- sum(res_nonsmoke_sig$log2FoldChange < 0)
+
+cat("Number of upregulated nonsmoking ASVs:", upregulated_count, "\n")
+cat("Number of downregulated nonsmoking ASVs:", downregulated_count, "\n")
+
 res_nonsmoke_sig <- res_nonsmoke_sig[order(res_nonsmoke_sig$log2FoldChange),]
 
 ggplot(data = res_nonsmoke_sig, aes(y = reorder(Genus, -(as.numeric(log2FoldChange))), x = log2FoldChange, fill = pvalue))+
