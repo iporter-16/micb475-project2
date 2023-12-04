@@ -144,7 +144,6 @@ ggplot(data = smoking_res_desc_sig, aes(x= log2FoldChange,y=reorder(description,
   theme_bw()+
   scale_fill_gradient(low = "yellow", high = "red", na.value = NA)+
   xlim(-2.5,1)+
-  xlim(-2.5,1)+
   labs(x = "Fold Change", y = "Bacterial Pathway")+
   ggtitle("LDL-Associated Pathway Changes in Smokers")
 
@@ -157,8 +156,28 @@ ggplot(data = nonsmoking_res_desc_sig, aes(x= log2FoldChange,y=reorder(descripti
   labs(x = "Fold Change", y = "Bacterial Pathway")+
   ggtitle("LDL-Associated Pathway Changes in Non-Smokers")
 
+#Filtering for >1 fold change
 
+smoking_res_above1 <- smoking_res_desc_sig %>%
+  filter(log2FoldChange > 1 | log2FoldChange < -1) %>%
+  arrange(log2FoldChange)
+ggplot(data = smoking_res_above1, aes(x= log2FoldChange,y=reorder(description, -(as.numeric(log2FoldChange))), fill = pvalue))+
+  geom_bar(stat = "identity") +
+  theme_bw()+
+  scale_fill_gradient(low = "yellow", high = "red", na.value = NA)+
+  xlim(-2.5,0.5)+
+  labs(x = "Fold Change", y = "Bacterial Pathway")+
+  ggtitle("LDL-Associated Pathway Changes in Smokers")
 
-
+nonsmoking_res_above1 <- nonsmoking_res_desc_sig %>%
+  filter(log2FoldChange > 1 | log2FoldChange < -1) %>%
+  arrange(log2FoldChange)
+ggplot(data = nonsmoking_res_above1, aes(x= log2FoldChange,y=reorder(description, -(as.numeric(log2FoldChange))), fill = pvalue))+
+  geom_bar(stat = "identity") +
+  theme_bw()+
+  scale_fill_gradient(low = "yellow", high = "red", na.value = NA)+
+  xlim(-2.5,0.5)+
+  labs(x = "Fold Change", y = "Bacterial Pathway")+
+  ggtitle("LDL-Associated Pathway Changes in Non-Smokers")
 
 
