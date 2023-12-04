@@ -86,7 +86,7 @@ ggsave("smoking_LDL_phyloseq_DeSeq.png", sighits)
 
 ##########################################################################################
 
-## Volcano plot: effect size VS significance of ASVs 
+## Volcano plot: effect size VS significance of ASVs ## 
 ggplot(res) + #show ASVs increasing/decreasing abundance compared to low ldl group
   geom_point(aes(x=log2FoldChange, y=-log10(padj))) #mising values due to NAs 
 
