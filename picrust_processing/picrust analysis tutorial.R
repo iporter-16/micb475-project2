@@ -31,7 +31,7 @@ library(ggprism)
 library(patchwork)
 library()
 
-abundance_file <- "output/pathways_out/path_abun_unstrat.tsv"
+abundance_file <- "picrust_processing/picrust2_out_pipeline/pathways_out/path_abun_unstrat.tsv"
 abundance_data <- read_delim(abundance_file, delim = "\t", col_names = TRUE, trim_ws = TRUE)
 abundance_data  =as.data.frame(abundance_data)
 rownames(abundance_data) = abundance_data$pathway
@@ -60,6 +60,7 @@ results_file_input <- ggpicrust2(file = abundance_data,
 
 
 kegg_abundance <- ko2kegg_abundance("output/KO_metagenome_out/pred_metagenome_unstrat.tsv") 
+kegg_abundance
 
 # Perform pathway differential abundance analysis (DAA) using ALDEx2 method
 # Please change group to "your_group_column" if you are not using example dataset
@@ -68,7 +69,7 @@ daa_results_df <- pathway_daa(abundance = abundance_data, metadata = metadata, g
 
 # Workflow for MetaCyc Pathway and EC
 
-# Load MetaCyc pathway abundance and metadata
+# Load abundance and metadata
 data("metacyc_abundance")
 data("metadata")
 library("ggh4x")

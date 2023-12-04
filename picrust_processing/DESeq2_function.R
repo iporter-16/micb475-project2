@@ -14,6 +14,7 @@ DEseq2_function = function(abundance_table,metadata){
   colnames(DESeq2_metadata) <- DESeq2_colnames
   DESeq2_metadata = as.data.frame(DESeq2_metadata)
   DESeq2_metadata[,"Group_group_nonsense"] <- as.factor(DESeq2_metadata[,"Group_group_nonsense"])
+  DESeq2_metadata[,"Group_group_nonsense"] <- relevel(DESeq2_metadata[,"Group_group_nonsense"], "low")
   
   # Generate combinations of groups for comparison
   DESeq2_combinations <- utils::combn(unique(DESeq2_metadata[, "Group_group_nonsense"]), 2)
