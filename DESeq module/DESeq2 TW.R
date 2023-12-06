@@ -166,7 +166,16 @@ ggplot(data = res_nonsmoke_sig, aes(y = reorder(Genus, -(as.numeric(log2FoldChan
   geom_bar(stat = "identity") +
   theme_bw()+
   scale_fill_gradient(low = "yellow", high = "red", na.value = NA)+
-  geom_col()
+  geom_col() + 
+  labs(x = "Average Log2 Fold Change", y = "Genus")
+
+#Dec 05, re-label AW 
+ggsave("nonsmoking_bar_plot.png", ggplot(data = res_nonsmoke_sig, aes(y = reorder(Genus, -(as.numeric(log2FoldChange))), x = log2FoldChange, fill = pvalue))+
+         geom_bar(stat = "identity") +
+         theme_bw()+
+         scale_fill_gradient(low = "yellow", high = "red", na.value = NA)+
+         geom_col() + 
+         labs(x = "Average Log2 Fold Change", y = "Genus"))
   
   
   res_genus_combined <- res_genus_combined[order(res_genus_combined$log2FoldChange_avg),]
