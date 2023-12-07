@@ -180,4 +180,22 @@ ggplot(data = nonsmoking_res_above1, aes(x= log2FoldChange,y=reorder(description
   labs(x = "log2 Fold Change", y = "Bacterial Pathway")+
   ggtitle("LDL-Associated Pathway Changes in Non-Smokers")
 
+smoking_res_above1$smoking="S"
+nonsmoking_res_above1$smoking="NS"
 
+figure4_res_above1 <- rbind(smoking_res_above1, nonsmoking_res_above1)
+
+figure4_res_above1$smoking = factor(figure4_res_above1$smoking, levels=c("S","NS"))
+ggplot(data = figure4_res_above1, aes(x= log2FoldChange,y=reorder(description, -(as.numeric(log2FoldChange))), fill = pvalue))+
+  geom_bar(stat = "identity") +
+  theme_bw()+
+  scale_fill_gradient(low = "yellow", high = "red", na.value = NA)+
+  xlim(-0.5,2.5)+
+  labs(x = "log2 Fold Change", y = "Bacterial Pathway")+
+  ggtitle("LDL-Associated Pathway Changes")+
+  facet_grid(rows = vars(smoking),scales ="free_y", space = "free_y")+
+  theme(strip.text = element_text(
+    size = 10, color = "black"), 
+    axis.text.y = element_text(size = 12, face = "bold"), 
+    legend.text = element_text(size = 12, face = "bold"))
+  
