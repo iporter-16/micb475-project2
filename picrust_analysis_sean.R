@@ -191,11 +191,10 @@ ggplot(data = figure4_res_above1, aes(x= log2FoldChange,y=reorder(description, -
   theme_bw()+
   scale_fill_gradient(low = "yellow", high = "red", na.value = NA)+
   xlim(-0.5,2.5)+
-  labs(x = "log2 Fold Change", y = "Bacterial Pathway")+
-  ggtitle("LDL-Associated Pathway Changes")+
+  labs(x = "Log2 Fold Change", y = "Bacterial Pathway")+
   facet_grid(rows = vars(smoking),scales ="free_y", space = "free_y")+
   theme(strip.text = element_text(
     size = 10, color = "black"), 
-    axis.text.y = element_text(size = 12, face = "bold"), 
+    axis.text.y = element_text(size = 18, face = "bold"), 
     legend.text = element_text(size = 12, face = "bold"))
   
