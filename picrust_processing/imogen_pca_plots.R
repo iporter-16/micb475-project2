@@ -40,8 +40,12 @@ row.names(filtered_LDL_smok) <- NULL
 # all_interesting <- pathway_annotation(pathway = "MetaCyc", daa_results_df = all_interesting, ko_to_kegg = FALSE)
 
 ### Create plots
-PCA_total <- pathway_pca(abundance = abundance_data %>% column_to_rownames("pathway"), 
-                         metadata = metadata, group = "smoker")+ggtitle("PCA plot for all participants")
+PCA_smoking_all <- pathway_pca(abundance = abundance_data %>% column_to_rownames("pathway"), 
+                         metadata = metadata, group = "smoker")+
+                        ggtitle("PCA plot comparing smoking in all participants")
+PCA_LDL_all <- pathway_pca(abundance = abundance_data %>% column_to_rownames("pathway"), 
+                           metadata = metadata, group = "LDL_category")+
+                        ggtitle("PCA plot comparing LDL in all participants")
 PCA_nonsmok_LDL <- pathway_pca(abundance = filtered_LDL_nonsmok %>% column_to_rownames("pathway"), 
                                metadata = metadata_nonsmoking, group = "LDL_category")+
                                 ggtitle("            Non-smokers")
