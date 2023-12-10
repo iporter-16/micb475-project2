@@ -83,7 +83,8 @@ ggplot(res) + #show number genes increasing/decreasing abundance compared to no 
 vol_plot <- res %>%
   mutate(significant = padj<0.01 & abs(log2FoldChange)>2) %>% #new column in results table 
   ggplot() +
-  geom_point(aes(x=log2FoldChange, y=-log10(padj), col=significant))
+  geom_point(aes(x=log2FoldChange, y=-log10(padj), col=significant)) +
+  labs(x="Log2 Fold Change")
 vol_plot
 
 ggsave(filename="vol_plot_smokingLDL.png",vol_plot)
